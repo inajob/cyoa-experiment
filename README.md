@@ -61,7 +61,7 @@ CYOAとは`Create Your Own Adventures`の略です。
 
 # ライセンス
 
-このリポジトリ全体のライセンスは[LISENCE](./LISENCE)に記載しているようにCC BY-SA 4.0です。
+このリポジトリ全体のライセンスは[LICENSE](./LICENSE)に記載しているようにCC BY-SA 4.0です。
 
 PRやForkする際はライセンスを確認したものとみなします。
 
