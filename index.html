@@ -1,18 +1,110 @@
 <html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta property="og:title" content="CYOA Experiment -みんなでアドベンチャーゲームを作ろう!-" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://inajob.github.io/cyoa-experiment/" />
+<meta property="og:image" content="https://inajob.github.io/cyoa-experiment/logo.png" />
+
+<style>
+#view{
+  padding: 3em;
+  background-color: #ddd;
+}
+</style>
+</had>
 <body>
+  <h1>CYOA Experiment -みんなでアドベンチャーゲームを作ろう!-</h1>
+  <a href="https://github.com/inajob/cyoa-experiment">GitHub</a>
+  <hr>
   <div id="view"></div>
+  <hr>
   <script id="main" type="cyoa-script"><!-
 # ここからシナリオスクリプト
-aaa
-bbb
-ccc
-:next,95882c9d-ac51-46c3-b35c-97081d1246ae
 
-*95882c9d-ac51-46c3-b35c-97081d1246ae,hoge
-hoge
+目が覚めた
+ここはどこだろう？
 
-*fuga
-fuga
+:起き上がる,1340bf82-53b6-4f71-a161-27a556a1a6e9
+:しばらく待つ,25c77c20-3d56-4e26-9b4b-8c8561b0942e
+
+*1340bf82-53b6-4f71-a161-27a556a1a6e9,起き上がった
+
+突然天井から大きな石が落ちてきた！！
+寝たままだと、頭に当たっていただろう・・ 危なった・・
+
+:深呼吸する, fc81150f-b8ec-4e2a-85c6-f3959b5be92b
+:叫ぶ,16d6c486-e5f8-4377-bf97-d00d562ecd31
+
+*fc81150f-b8ec-4e2a-85c6-f3959b5be92b, 深呼吸した
+スー、ハー 深呼吸して気持ちを落ち着けよう
+
+どうやら私は4畳半程度の部屋のベッドの上にいるようだ。
+
+そして私のベッドの横には！！クマが眠っている！！
+
+:そっとベッドから降りる, 7142dd90-0f68-4ed7-976b-fbf4a0cb7d4c
+:しばらくそのまま硬直している, f0862383-0b89-4c4b-ac86-7b4874f88e2b
+
+*7142dd90-0f68-4ed7-976b-fbf4a0cb7d4c, ベッドから降りた
+
+ベッドから降りて、クマを起こさないようにそーっと部屋の出口に向かう
+
+出口のドアには2つのボタンがある、1つは「赤い」もう一つは「青い」
+
+:赤いボタンを押す, d6f88260-7a97-4c94-8068-293f53612cc1
+:青いボタンを押す, 2baf5b1f-3571-41e5-9577-42a8bbc3465c
+
+*f0862383-0b89-4c4b-ac86-7b4874f88e2b, 硬直している
+
+少しでも音を立てると、クマが起きてしまうかもしれない・・
+そう思って私はじっとしていた
+
+しかし、いつまでもこのままではいけない・・
+
+:もう一度深呼吸する, fc81150f-b8ec-4e2a-85c6-f3959b5be92b
+
+*d6f88260-7a97-4c94-8068-293f53612cc1, 赤いボタン
+
+「ビー！ビー！」
+突然大きな音が鳴り始めた！
+
+クマが目を覚まして私に襲い掛かってきた！
+
+:次へ,ef427481-648a-48bd-a43c-335ccc254ea6
+
+*2baf5b1f-3571-41e5-9577-42a8bbc3465c, 青いボタン
+
+静かに扉が開いた
+
+:扉の外に出る, 2baf5b1f-3571-41e5-9577-42a8bbc3465c
+
+
+*16d6c486-e5f8-4377-bf97-d00d562ecd31, 叫んだ
+「ぎゃー」
+急に石が落ちてきた驚きで叫んだ。
+
+すると、どこからともなく表れたクマが私に襲い掛かってきた
+
+:次へ,ef427481-648a-48bd-a43c-335ccc254ea6
+
+*25c77c20-3d56-4e26-9b4b-8c8561b0942e, しばらく待った
+
+突然天井から大きな石が落ちてきて、顔面を直撃した。
+
+:次へ,ef427481-648a-48bd-a43c-335ccc254ea6
+
+*2baf5b1f-3571-41e5-9577-42a8bbc3465c, ゲームクリア！
+
+無事部屋から脱出できた！
+
+%end
+
+*ef427481-648a-48bd-a43c-335ccc254ea6, ゲームオーバー
+ゲームオーバー
+
+%end
 
 # ここまでシナリオスクリプト
 -></script>
@@ -40,6 +132,7 @@ function makeLabelMap(){
 makeLabelMap()
 
 function jump(label){
+  console.log(label)
   pos = labelMap[label] + 1
 }
 
@@ -78,14 +171,18 @@ function run(){
         break
         case '*': //label
           if(!hasChoice){
-            addChoice("次へ", line.slice(1))
+            addChoice("次へ", extractLabelId(line))
           }
           end = true
         break
         case '%': //command
+          switch(line.slice(1)){
+            case "end":
+              end = true
+          }
         break
         case ':': //choice
-          let parts = line.slice(1).split(/,/)
+          let parts = line.slice(1).split(/,[\s]*/)
           addChoice(parts[0], parts[1])
           hasChoice = true
         break
