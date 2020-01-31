@@ -51,7 +51,8 @@ https://inajob.github.io/cyoa-experiment/
 
 `% 命令`
 
-のちのために予約しています
+- `%end`
+  - ゲームオーバーです。「次へ」が表示されません
 
 ## テキスト
 
