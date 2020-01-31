@@ -1,4 +1,4 @@
-# CYOA Experiment
+# CYOA Experiment -みんなでアドベンチャーゲームを作ろう!-
 
 CYOAとは`Create Your Own Adventures`の略です。
 
