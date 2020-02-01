@@ -35,8 +35,13 @@
 突然天井から大きな石が落ちてきた！！
 寝たままだと、頭に当たっていただろう・・ 危なった・・
 
+*8adf4837-8521-490f-95cc-80ee33a1e2fe,起き上がってやること
+
+さて、どうしよう？
+
 :深呼吸する, fc81150f-b8ec-4e2a-85c6-f3959b5be92b
 :叫ぶ,16d6c486-e5f8-4377-bf97-d00d562ecd31
+:石を調べる, 34af6c66-c5e0-4228-a987-9b9e007c4f52
 
 *fc81150f-b8ec-4e2a-85c6-f3959b5be92b, 深呼吸した
 スー、ハー 深呼吸して気持ちを落ち着けよう
@@ -51,6 +56,8 @@
 *7142dd90-0f68-4ed7-976b-fbf4a0cb7d4c, ベッドから降りた
 
 ベッドから降りて、クマを起こさないようにそーっと部屋の出口に向かう
+
+*a9ca163a-84e2-4b05-8ce3-74abc5a8b04f, 扉の前
 
 出口のドアには2つのボタンがある、1つは「赤い」もう一つは「青い」
 
@@ -71,9 +78,20 @@
 「ビー！ビー！」
 突然大きな音が鳴り始めた！
 
+%eqif vfd8f94cbdfe54e888f43eb426f54b414, 死亡, f278188c-3e00-4dbf-bd9e-f4a8595c5c64
+
+*f3245117-37ef-426d-9a34-021d16219c4f,クマ生存ルート
+
 クマが目を覚まして私に襲い掛かってきた！
 
+%eqif v6264f055002b48b9b9df144ce56fe32f, 所有, 39c064ae-a799-4944-a7d6-7f6218a83653
 :次へ,ef427481-648a-48bd-a43c-335ccc254ea6
+
+*f278188c-3e00-4dbf-bd9e-f4a8595c5c64, クマ死亡ルート
+
+クマはすでに倒しているので、何もおこらない
+
+:次へ, a9ca163a-84e2-4b05-8ce3-74abc5a8b04f
 
 *2baf5b1f-3571-41e5-9577-42a8bbc3465c, 青いボタン
 
@@ -88,14 +106,36 @@
 
 すると、どこからともなく表れたクマが私に襲い掛かってきた
 
+%eqif v6264f055002b48b9b9df144ce56fe32f, 所有, 39c064ae-a799-4944-a7d6-7f6218a83653
+
 :次へ,ef427481-648a-48bd-a43c-335ccc254ea6
+
+*39c064ae-a799-4944-a7d6-7f6218a83653, 熊退治
+
+とっさに手元にあったビームライフルを手に取った
+「ビーーーー！！」
+
+クマを撃退した！
+%set vfd8f94cbdfe54e888f43eb426f54b414, 死亡, クマが死亡しているか
+
+*724ff0e9-9725-4a8e-be88-c02c8a50321e, 熊退治後
+
+さて、クマは倒したが、、どうしようか？
+
+:扉に向かう, a9ca163a-84e2-4b05-8ce3-74abc5a8b04f
+
+*34af6c66-c5e0-4228-a987-9b9e007c4f52, 石を調べた
+ビームライフルが見つかった。
+
+%set v6264f055002b48b9b9df144ce56fe32f, 所有, ビームライフルを持っているか
+
+:次へ, 8adf4837-8521-490f-95cc-80ee33a1e2fe
 
 *25c77c20-3d56-4e26-9b4b-8c8561b0942e, しばらく待った
 
 突然天井から大きな石が落ちてきて、顔面を直撃した。
 
 :次へ,ef427481-648a-48bd-a43c-335ccc254ea6
-
 
 *1ebcf8bc-6e3c-4593-8ee9-d8bfb9513686, ポケットの中
 
@@ -131,9 +171,12 @@ let view = document.getElementById("view")
 let source = document.getElementById("main").innerText.split(/[\r\n]/).slice(1).slice(0,-1)
 let pos = 0;
 let labelMap = {}
+let variables = {}
+
 console.log(source)
 
 const generateUuid=($=(a,b)=>(Math.floor(Math.random()*a)+b).toString(16))=>'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/x/g,_=>$(16,0)).replace(/y/g,_=>$(4,8));
+const generateVariableId = (() => {return "v" + generateUuid().replace(/-/g,"")})
 
 function extractLabelId(line){
   return line.slice(1).split(/,/)[0]
@@ -184,6 +227,7 @@ function run(){
     let line = source[pos]
     if(line.length > 0){
       let type = ""
+      let parts
       switch(line[0]){
         case '#': //comment
         break
@@ -194,13 +238,26 @@ function run(){
           end = true
         break
         case '%': //command
-          switch(line.slice(1)){
+          parts = line.slice(1).split(/\s+/)
+          let args = parts.slice(1).join(" ").split(/,\s*/)
+          switch(parts[0]){
             case "end":
               end = true
+              break
+            case "set":
+              variables[args[0]] = args[1]
+              break
+            case "eqif":
+              console.log(args)
+              console.log(variables[args[0]], args[1])
+              if(variables[args[0]] == args[1]){
+                jump(args[2])
+              }
+              break
           }
         break
         case ':': //choice
-          let parts = line.slice(1).split(/,[\s]*/)
+          parts = line.slice(1).split(/,[\s]*/)
           addChoice(parts[0], parts[1])
           hasChoice = true
         break
@@ -210,7 +267,6 @@ function run(){
     }
     pos ++
   }
-
 }
 
 run()
