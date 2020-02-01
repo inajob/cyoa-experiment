@@ -37,6 +37,7 @@
 
 :深呼吸する, fc81150f-b8ec-4e2a-85c6-f3959b5be92b
 :叫ぶ,16d6c486-e5f8-4377-bf97-d00d562ecd31
+:石を調べる, 34af6c66-c5e0-4228-a987-9b9e007c4f52
 
 *fc81150f-b8ec-4e2a-85c6-f3959b5be92b, 深呼吸した
 スー、ハー 深呼吸して気持ちを落ち着けよう
@@ -88,7 +89,17 @@
 
 すると、どこからともなく表れたクマが私に襲い掛かってきた
 
+%if ビームライフル 所有 ビームライフルで攻撃したが、効果がない 殴りかかったが、効果がない
+
 :次へ,ef427481-648a-48bd-a43c-335ccc254ea6
+
+*34af6c66-c5e0-4228-a987-9b9e007c4f52, 石を調べた
+ビームライフルが見つかった。
+
+%set ビームライフル 所有
+
+:深呼吸する, fc81150f-b8ec-4e2a-85c6-f3959b5be92b
+:叫ぶ,16d6c486-e5f8-4377-bf97-d00d562ecd31
 
 *25c77c20-3d56-4e26-9b4b-8c8561b0942e, しばらく待った
 
@@ -131,6 +142,8 @@ let view = document.getElementById("view")
 let source = document.getElementById("main").innerText.split(/[\r\n]/).slice(1).slice(0,-1)
 let pos = 0;
 let labelMap = {}
+let params = {}
+
 console.log(source)
 
 const generateUuid=($=(a,b)=>(Math.floor(Math.random()*a)+b).toString(16))=>'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/x/g,_=>$(16,0)).replace(/y/g,_=>$(4,8));
@@ -177,6 +190,7 @@ function addChoice(s, label){
   })
 }
 
+
 function run(){
   let end = false
   let hasChoice = false
@@ -194,9 +208,21 @@ function run(){
           end = true
         break
         case '%': //command
-          switch(line.slice(1)){
+          args = line.slice(1).split(" ")
+          switch(args[0]){
             case "end":
               end = true
+              break
+            case "set":
+              params[args[1]] = args[2]
+              break
+            case "if": 
+              if(args[1] in params && params[args[1]] == args[2]){
+                addText(args[3])
+              } else if (line.length >=5){
+                addText(args[4])
+              }
+              break
           }
         break
         case ':': //choice
