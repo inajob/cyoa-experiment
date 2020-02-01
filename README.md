@@ -1,16 +1,11 @@
 # CYOA Experiment -みんなでアドベンチャーゲームを作ろう!-
 
 CYOAとは`Create Your Own Adventures`の略です。
-
 このリポジトリではインターネットみんなで作るテキストアドベンチャーの実験をしています。
 
 単純な命令のみが利用できるゲームエンジンを用意しましたので、テキストアドベンチャー参加に協力してみたい人はお気軽にPRしてみてください
 
-# 遊ぶ！
-
-masterブランチのアドベンチャーゲームが遊べます
-
-https://inajob.github.io/cyoa-experiment/
+ここからmasterブランチのアドベンチャーゲームが遊べます→  https://inajob.github.io/cyoa-experiment/
 
 # 参加方法
 
