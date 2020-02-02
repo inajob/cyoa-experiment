@@ -10,6 +10,7 @@ let labelMap = {}
 let variables = {}
 
 const generateUuid=($=(a,b)=>(Math.floor(Math.random()*a)+b).toString(16))=>'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/x/g,_=>$(16,0)).replace(/y/g,_=>$(4,8));
+const generateLabelId = (() => {return "l" + generateUuid().replace(/-/g,"")})
 const generateVariableId = (() => {return "v" + generateUuid().replace(/-/g,"")})
 
 function extractLabelId(line){
