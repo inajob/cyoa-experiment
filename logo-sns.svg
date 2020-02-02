@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="640"
+   height="320"
+   viewBox="0 0 169.33333 84.666669"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="logo-sns.svg"
+   inkscape:export-filename="C:\Users\user\work\repos\cyoa-experiment\logo-sns.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="296.94692"
+     inkscape:cy="128.38404"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="px"
+     borderlayer="true"
+     inkscape:window-width="1238"
+     inkscape:window-height="900"
+     inkscape:window-x="2457"
+     inkscape:window-y="18"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="レイヤー 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-212.33332)">
+    <rect
+       style="opacity:0.98000004;fill:#f9f9f9;fill-opacity:1;stroke:none;stroke-width:6.81277657;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect873"
+       width="179.96657"
+       height="93.575974"
+       x="-5.3968101"
+       y="207.50346" />
+    <g
+       id="g4543"
+       transform="translate(42.197276)">
+      <g
+         style="fill:#cccccc"
+         id="layer1-3"
+         transform="matrix(0.3000186,0,0,0.3000186,-79.021521,50.752965)">
+        <path
+           inkscape:connector-curvature="0"
+           id="rect2992-9-9"
+           style="color:#000000;text-indent:0;text-transform:none;fill:#cccccc"
+           d="m 319.86,552.93 c -6.5778,0 -11.999,5.4212 -11.999,12 v 232 c 0,6.5788 5.4216,12 11.999,12 h 191.99 c 6.5778,0 11.999,-5.4212 11.999,-12 V 677.05 l -7.9996,8 v 111.88 c 0,2.2852 -1.715,4 -3.9998,4 h -191.99 c -2.2849,0 -3.9998,-1.7148 -3.9998,-4 v -232 c 0,-2.2852 1.7149,-4 3.9998,-4 h 191.99 c 2.2848,0 3.9998,1.7148 3.9998,4 v 52.031 l 7.9996,8 V 564.93 c 0,-6.5788 -5.4216,-12 -11.999,-12 z m 30.592,56.406 v 4 h 130.81 v -4 z m 156.15,9.7188 c -0.90762,0 -1.8044,0.33575 -2.4999,1.0312 l -20.999,21 c -1.3909,1.3912 -1.391,3.6089 0,5 l 27.686,27.688 c 1.3909,1.3912 3.64,1.3912 5.031,0 l 20.999,-21 c 1.3909,-1.3911 1.3909,-3.6088 0,-5 l -27.686,-27.688 c -0.69548,-0.6955 -1.6235,-1.0312 -2.5311,-1.0312 z m -31.592,31.594 c -0.90762,0 -1.8044,0.33565 -2.4999,1.0312 l -66.715,66.719 c -1.3909,1.3912 -1.3909,3.6089 0,5 l 27.686,27.688 c 1.3909,1.3912 3.6401,1.3912 5.031,0 l 66.684,-66.688 c 1.3909,-1.3911 1.3909,-3.6402 0,-5.0312 l -27.686,-27.688 c -0.69547,-0.6956 -1.5922,-1.0312 -2.4999,-1.0312 z m -124.56,5.0938 v 4 h 102.68 l 3.9998,-4 h -106.68 z m 0,46.375 v 4 h 56.31 l 3.9998,-4 h -60.309 z m 47.029,25.719 a 1.6523,1.9082 0 0 0 -1.4999,1.5625 l -7.3434,22.125 -7.3434,22.062 a 1.6523,1.9082 0 0 0 0.37498,1.75 1.6523,1.9082 0 0 0 0.15624,0.125 1.6523,1.9082 0 0 0 1.4999,0.125 l 22.061,-7.3125 22.093,-7.375 a 1.6523,1.9082 0 0 0 0.99995,-3.0312 l -14.718,-14.719 -14.718,-14.75 a 1.6523,1.9082 0 0 0 -1.3749,-0.5625 1.6523,1.9082 0 0 0 -0.18749,0 z m -47.029,20.688 v 4 h 29.28 l 1.3124,-4 h -30.592 z m 101.93,0 -3.9998,4 h 32.873 v -4 h -28.873 z" />
+      </g>
+      <flowRoot
+         transform="matrix(0.20747506,0,0,0.20747506,43.770567,204.49842)"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         id="flowRoot815"
+         xml:space="preserve"><flowRegion
+           id="flowRegion817"><rect
+             y="62.142857"
+             x="-201.42857"
+             height="181.42857"
+             width="454.99997"
+             id="rect819" /></flowRegion><flowPara
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'UD Digi Kyokasho NK-B';-inkscape-font-specification:'UD Digi Kyokasho NK-B'"
+           id="flowPara821">みんなで</flowPara><flowPara
+           id="flowPara823"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'UD Digi Kyokasho NK-B';-inkscape-font-specification:'UD Digi Kyokasho NK-B'">アドベンチャーゲームを</flowPara><flowPara
+           id="flowPara825"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'UD Digi Kyokasho NK-B';-inkscape-font-specification:'UD Digi Kyokasho NK-B'">作ろう</flowPara></flowRoot>      <flowRoot
+         transform="matrix(0.20747506,0,0,0.20747506,46.65832,270.47142)"
+         style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+         id="flowRoot815-7"
+         xml:space="preserve"><flowRegion
+           id="flowRegion817-1"><rect
+             y="62.142857"
+             x="-201.42857"
+             height="181.42857"
+             width="454.99997"
+             id="rect819-6" /></flowRegion><flowPara
+           id="flowPara825-8"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'UD Digi Kyokasho NK-B';-inkscape-font-specification:'UD Digi Kyokasho NK-B'">CYOA Experiment</flowPara></flowRoot>    </g>
+  </g>
+</svg>
