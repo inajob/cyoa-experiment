@@ -1,3 +1,9 @@
+このリポジトリには下記CC BY-SA 4.0と MIT Lisenceの内容が混在しています。
+
+ストーリ部分はCC BY-SA 4.0, プログラム（JavaScipr部分）についてはMIT Lisenceとなっています。
+
+---
+
 Attribution-ShareAlike 4.0 International
 
 =======================================================================
@@ -425,6 +431,8 @@ the avoidance of doubt, this paragraph does not form part of the
 public licenses.
 
 Creative Commons may be contacted at creativecommons.org.
+
+---
 
 Copyright 2020 inajob
 
