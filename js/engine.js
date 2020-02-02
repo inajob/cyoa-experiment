@@ -13,14 +13,43 @@ const generateUuid=($=(a,b)=>(Math.floor(Math.random()*a)+b).toString(16))=>'xxx
 const generateLabelId = (() => {return "l" + generateUuid().replace(/-/g,"")})
 const generateVariableId = (() => {return "v" + generateUuid().replace(/-/g,"")})
 
-function extractLabelId(line){
-  return line.slice(1).split(/,/)[0]
+function parseLine(line){
+  let type = "text"
+  let args = []
+  if(line.length > 0){
+    switch(line[0]){
+      case '*': type = "label"; break
+      case ':': type = "choice"; break
+      case '#': type = "comment"; break
+      case '%': type = "command"; break
+    }
+    switch(type){
+      case "choice":
+      case "label":
+        args = line.slice(1).split(/,[\s]*/)
+        break;
+      case "command":
+        let firstSpacePos = line.indexOf(" ")
+        if(firstSpacePos != -1){
+          args.push(line.substring(1,firstSpacePos))
+          args = args.concat(line.slice(firstSpacePos + 1).split(/,[\s]*/))
+        }else{
+          args.push(line.slice(1))
+        }
+        break;
+    }
+  }
+  return {
+    type,
+    args
+  }
 }
 
 function makeLabelMap(){
   source.forEach((line,index) => {
-    if(line.length > 0 && line[0] == '*'){
-      labelMap[extractLabelId(line)] = index
+    let pline = parseLine(line)
+    if(pline.type == 'label'){
+      labelMap[pline.args[0]] = index
     }
   })
 }
@@ -59,43 +88,38 @@ function run(){
   let hasChoice = false
   while(!end && pos < source.length){
     let line = source[pos]
-    if(line.length > 0){
-      let type = ""
-      let parts
-      switch(line[0]){
-        case '#': //comment
-        break
-        case '*': //label
-          if(!hasChoice){
-            addChoice("次へ", extractLabelId(line))
-          }
-          end = true
-        break
-        case '%': //command
-          parts = line.slice(1).split(/\s+/)
-          let args = parts.slice(1).join(" ").split(/,\s*/)
-          switch(parts[0]){
-            case "end":
-              end = true
-              break
-            case "set":
-              variables[args[0]] = args[1]
-              break
-            case "eqif":
-              if(variables[args[0]] == args[1]){
-                jump(args[2])
-              }
-              break
-          }
-        break
-        case ':': //choice
-          parts = line.slice(1).split(/,[\s]*/)
-          addChoice(parts[0], parts[1])
-          hasChoice = true
-        break
-        default:
-          addText(line)
-      }
+    let pline = parseLine(source[pos])
+    let type = ""
+    switch(pline.type){
+      case 'comment':
+      break
+      case 'label':
+        if(!hasChoice){
+          addChoice("次へ", pline.args[0])
+        }
+        end = true
+      break
+      case 'command':
+        switch(pline.args[0]){
+          case "end":
+            end = true
+            break
+          case "set":
+            variables[pline.args[1]] = pline.args[2]
+            break
+          case "eqif":
+            if(variables[pline.args[1]] == pline.args[2]){
+              jump(pline.args[3])
+            }
+            break
+        }
+      break
+      case 'choice':
+        addChoice(pline.args[0], pline.args[1])
+        hasChoice = true
+      break
+      default:
+        addText(line)
     }
     pos ++
   }
