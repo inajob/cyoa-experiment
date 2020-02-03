@@ -86,6 +86,7 @@ function addChoice(s, label){
 function run(){
   let end = false
   let hasChoice = false
+  let hasText = false
   while(!end && pos < source.length){
     let line = source[pos]
     let pline = parseLine(source[pos])
@@ -94,10 +95,13 @@ function run(){
       case 'comment':
       break
       case 'label':
-        if(!hasChoice){
-          addChoice("次へ", pline.args[0])
+        if(hasText){
+          if(!hasChoice){
+            addChoice("次へ", pline.args[0])
+          }
+
+          end = true
         }
-        end = true
       break
       case 'command':
         switch(pline.args[0]){
@@ -120,6 +124,7 @@ function run(){
       break
       default:
         addText(line)
+        hasText=true
     }
     pos ++
   }
