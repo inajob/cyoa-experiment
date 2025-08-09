@@ -1,0 +1,739 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta property="og:title" content="CYOA Experiment -霧に包まれた山荘の謎-" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://inajob.github.io/cyoa-experiment/" />
+<meta property="og:image" content="https://inajob.github.io/cyoa-experiment/img/logo-sns.png" />
+<style>
+#view{
+  padding: 3em;
+  background-color: #333;
+  color: #eee;
+  font-family: serif;
+}
+button{
+  padding: 1em;
+  width: 100%;
+  margin-top: 1em;
+  background-color: #555;
+  color: #fff;
+  border: 1px solid #777;
+}
+body {
+  background-color: #222;
+  color: #ccc;
+}
+a {
+  color: #8af;
+}
+.desc{
+  font-size: small;
+  padding: 1em;
+}
+</style>
+</head>
+<body>
+  <h1>霧に包まれた山荘の謎</h1>
+  <div id="view"></div>
+  <hr>
+  <div class="desc">
+    <p>これは、あなたが探偵となり、山荘で起きた謎を解き明かすテキストアドベンチャーゲームです。</p>
+    <p>This is a CYOA(Create Your Own Adventure) game created by Gemini. See <a href="https://github.com/inajob/cyoa-experiment">inajob/cyoa-experiment</a> for details.</p>
+  </div>
+  <script id="main" type="cyoa-script"><!-
+# This website content is released under the CC BY-SA 4.0 License, see LICENSE.
+# --- シナリオスクリプト ---
+
+# ラベルID: l_start
+# ラベル名: ゲーム開始
+
+私の名前は時任 玲（ときとう れい）。探偵だ。
+ある冬の日、私の事務所に一通の手紙が届いた。
+
+差出人は、資産家として知られる男、一条 進（いちじょう すすむ）。
+彼が所有する山奥の山荘で、奇妙な出来事が相次いでいるため、調査してほしいという。
+
+数日後、私は雪深い山道を登り、その山荘「霧山荘（きりやまそう）」に到着した。
+
+:インターホンを鳴らす,l_arrive_mansion
+
+*l_arrive_mansion
+# ラベルID: l_arrive_mansion
+# ラベル名: 山荘到着
+
+重厚な扉の横にあるインターホンを鳴らすと、すぐに扉が開いた。
+現れたのは、執事だと名乗る初老の男性、高坂（こうさか）だ。
+
+「お待ちしておりました、時任探偵。主の一条は書斎にてお待ちです。」
+
+高坂に案内され、私は暖炉の火が揺れる広々としたラウンジを通り、書斎へと向かった。
+
+:次へ,l_meet_ichijo
+
+*l_meet_ichijo
+# ラベルID: l_meet_ichijo
+# ラベル名: 一条との対面
+
+書斎の主、一条進は、神経質そうに指を組んで私を待っていた。
+
+「よく来てくれた、時任探偵。さっそくで悪いが、奇妙な出来事について話したい。」
+
+彼は、夜中に誰もいないはずの廊下から聞こえる足音、書斎から物が消える現象、そして彼自身に送られてきた脅迫状について語った。
+
+「警察には、まだ内密に願いたい。これは内々の問題だ。」
+
+そう彼が話し終えた瞬間、窓の外で轟音が響き、山荘全体がわずかに揺れた。
+
+:何事か尋ねる,l_avalanche
+
+*l_avalanche
+# ラベルID: l_avalanche
+# ラベル名: 雪崩発生
+
+「今の音は…？」
+
+執事の高坂が慌てて書斎に入ってきた。
+「旦那様！どうやら雪崩です！麓へと続く唯一の道が、完全に塞がれてしまいました！」
+
+電話も通じない。私たちは完全に孤立してしまったのだ。
+不安な一夜が明け、翌朝。
+
+執事が血相を変えて私の部屋に飛び込んできた。
+「た、大変です！旦那様が…一条様が、書斎で…！」
+
+:書斎へ向かう,l_discover_body
+
+*l_discover_body
+# ラベルID: l_discover_body
+# ラベル名: 死体発見
+
+急いで書斎へ向かうと、そこには息絶えた一条の姿があった。
+机に突っ伏し、背中には深々とナイフが突き刺さっている。
+
+これは事故ではない。殺人事件だ。
+この吹雪で閉ざされた山荘にいる誰かが、彼を殺したのだ。
+
+私は探偵として、この事件の調査を始めることを決意した。
+
+さて、まず何をすべきか？
+
+:現場である書斎を詳しく調べる,l_investigate_study
+:山荘にいる他の人々に話を聞く,l_interview_people
+:まずは山荘からの脱出方法を探す,l_find_escape_route
+
+# --- 以下、各ルートのプレースホルダー ---
+
+*l_investigate_study
+# ラベルID: l_investigate_study
+# ラベル名: 書斎を調べる
+
+書斎の調査を開始する。
+冷たくなった一条の遺体、荒らされた本棚、そして机の上に残されたもの…。
+どこから調べるべきか。
+
+:遺体を調べる,l_examine_body
+:机の上を調べる,l_examine_desk
+:本棚を調べる,l_examine_bookshelf
+
+*l_examine_body
+# ラベルID: l_examine_body
+# ラベル名: 遺体を調べる
+
+遺体を慎重に調べる。
+背中に刺さったナイフは、この山荘のキッチンにあるものとデザインが一致しているようだ。
+そして、一条が握りしめている右手に、小さな紙切れが隠されているのを見つけた。
+
+%set v_found_memo, true, メモ発見フラグ
+
+:紙切れを読む,l_read_memo
+:他の場所を調べる,l_investigate_study_return
+
+*l_read_memo
+# ラベルID: l_read_memo
+# ラベル名: メモを読む
+
+紙切れを開くと、そこには震えるような文字でこう書かれていた。
+「裏切り者は、お前だ」
+
+これはダイイング・メッセージだろうか？
+だとしたら、一条は自分を裏切った人物に殺された…？
+
+:他の場所を調べる,l_investigate_study_return
+
+*l_examine_desk
+# ラベルID: l_examine_desk
+# ラベル名: 机の上を調べる
+
+机の上には、高価そうな万年筆と、書きかけの手紙が残されている。
+手紙にはこうある。
+「長年の友人である君を、こんな形で疑いたくはない。だが、真実を確かめなければ…」
+手紙の宛名は破り取られていて、誰に宛てたものかは分からない。
+
+%set v_found_letter, true, 手紙発見フラグ
+
+:他の場所を調べる,l_investigate_study_return
+
+*l_examine_bookshelf
+# ラベルID: l_examine_bookshelf
+# ラベル名: 本棚を調べる
+
+巨大な本棚には、法律や歴史に関する難解な本が並んでいる。
+いくつか不自然に引き抜かれた跡があり、床には数冊の本が散らばっている。
+犯人が何かを探していたのだろうか？
+
+散らばった本を元に戻すと、一冊だけ、タイトルが擦り切れた古い日記が見つかった。
+
+%set v_found_diary, true, 日記発見フラグ
+
+:日記を読む,l_read_diary
+:他の場所を調べる,l_investigate_study_return
+
+*l_read_diary
+# ラベルID: l_read_diary
+# ラベル名: 日記を読む
+
+それは一条の古い日記だった。
+中には、彼の事業に関する記述が並んでいる。
+そして、数ページにわたり、ある人物との共同事業が失敗し、彼を破産させてしまったことへの後悔が綴られていた。
+その人物の名前は…「榊（さかき）」と記されている。
+
+:他の場所を調べる,l_investigate_study_return
+
+*l_investigate_study_return
+# ラベルID: l_investigate_study_return
+# ラベル名: 書斎の調査に戻る
+
+さて、他に調べるべき場所は…
+
+:遺体を調べる,l_examine_body
+:机の上を調べる,l_examine_desk
+:本棚を調べる,l_examine_bookshelf
+:調査を終えて、聞き込みに移る,l_interview_people
+
+*l_interview_people
+# ラベルID: l_interview_people
+# ラベル名: 聞き込みをする
+
+書斎を出て、ラウンジへ向かう。
+そこには、この山荘に滞在している人々が集まっていた。
+皆、不安そうな顔をしている。
+
+この中に、一条を殺害した犯人がいる…。
+
+誰から話を聞くべきか？
+
+:執事の高坂,l_interview_kousaka
+:一条の妻,l_interview_wife
+:一条のビジネスパートナー,l_interview_partner
+:調査を中断し、書斎に戻る,l_investigate_study
+
+*l_interview_kousaka
+# ラベルID: l_interview_kousaka
+# ラベル名: 執事の高坂に聞く
+
+執事の高坂は、暖炉のそばで静かに佇んでいる。
+彼は長年、一条家に仕えてきたという。
+
+「何かお気づきの点は？」と尋ねると、彼は重々しく口を開いた。
+「旦那様は…最近、誰かを酷く警戒しておられました。『裏切り者』という言葉を口にすることも…」
+
+%eqif v_found_memo, true, l_kousaka_ask_memo
+
+:次へ,l_interview_people_return
+
+*l_kousaka_ask_memo
+# ラベルID: l_kousaka_ask_memo
+# ラベル名: 高坂にメモを見せる
+
+一条が握っていたメモを見せると、高坂は息をのんだ。
+「これは…！やはり、旦那様は誰かに裏切られたと…。」
+彼はそれ以上、口を開こうとはしなかった。
+
+:聞き込みに戻る,l_interview_people_return
+
+*l_interview_wife
+# ラベルID: l_interview_wife
+# ラベル名: 一条の妻に聞く
+
+一条の妻、響子（きょうこ）は、ソファに座り、ショックで言葉も出ない様子だ。
+
+:「何か変わったことは？」と事務的に聞く,l_interview_wife_normal
+:「大丈夫ですか？」と気遣う,l_interview_wife_care
+
+*l_interview_wife_normal
+# ラベルID: l_interview_wife_normal
+# ラベル名: 妻に普通に聞く
+
+私の問いに、彼女はか細い声で答えた。
+「主人は…最近、古い友人と揉めていたようでした。事業のことで…。」
+
+%eqif v_found_diary, true, l_wife_ask_diary
+
+:次へ,l_interview_people_return
+
+*l_interview_wife_care
+# ラベルID: l_interview_wife_care
+# ラベル名: 妻を気遣う
+
+私が優しく声をかけると、響子は少しだけ表情を和らげた。
+「ありがとうございます…。」
+彼女は私に少し心を開いてくれたようだ。
+
+%set v_wife_coop, true, 響子協力フラグ
+
+「主人は…最近、古い友人と揉めていたようでした。事業のことで…。」
+
+%eqif v_found_diary, true, l_wife_ask_diary
+
+:次へ,l_interview_people_return
+
+*l_wife_ask_diary
+# ラベルID: l_wife_ask_diary
+# ラベル名: 妻に日記について聞く
+
+日記に書かれていた「榊」という名前を出すと、彼女は顔を青ざめさせた。
+「榊さん…！なぜその名前を…。主人は、彼に対して大きな負い目を感じていました。でも、それは昔のことのはず…」
+彼女は何かを隠しているようだ。
+
+:聞き込みに戻る,l_interview_people_return
+
+*l_interview_partner
+# ラベルID: l_interview_partner
+# ラベル名: ビジネスパートナーに聞く
+
+一条のビジネスパートナーである、榊（さかき）と名乗る男。
+彼はラウンジの窓から、吹雪の外を眺めている。
+日記に名前があった人物だ。
+
+「一条さんとは、古い付き合いでね。事業のことで招待されたんだ。」
+彼は落ち着いた様子で語る。
+
+%eqif v_found_letter, true, l_partner_ask_letter
+
+:次へ,l_interview_people_return
+
+*l_partner_ask_letter
+# ラベルID: l_partner_ask_letter
+# ラベル名: パートナーに手紙を見せる
+
+机にあった書きかけの手紙について尋ねると、榊は少し表情を硬くした。
+「…そうか。彼は私を疑っていたのか。まあ、無理もない。私たちの間には、少しばかり過去の因縁があってね。」
+彼はそれ以上を語ろうとはしなかった。
+
+:聞き込みに戻る,l_interview_people_return
+
+*l_interview_people_return
+# ラベルID: l_interview_people_return
+# ラベル名: 聞き込みに戻る
+
+さて、他に話を聞くべき相手は…
+
+:執事の高坂,l_interview_kousaka
+:一条の妻,l_interview_wife
+:一条のビジネスパートナー,l_interview_partner
+:調査を中断し、書斎に戻る,l_investigate_study
+:情報を整理し、揺さぶりをかける相手を選ぶ,l_shake_down_select
+
+*l_shake_down_select
+# ラベルID: l_shake_down_select
+# ラベル名: 揺さぶりをかける相手を選ぶ
+
+まだ確証はない…。だが、特定の人物に揺さぶりをかければ、何かボロを出すかもしれない。
+あるいは、危険な状況に陥る可能性もあるが…。
+
+誰を問い詰めるべきか…？
+
+:ビジネスパートナーの榊,l_shake_down_partner
+:妻の響子,l_shake_down_wife
+:執事の高坂,l_shake_down_kousaka
+:危険だ、やめておく（最終推理へ）,l_deduce_culprit
+
+*l_shake_down_partner
+# ラベルID: l_shake_down_partner
+# ラベル名: 榊を問い詰める
+
+私は榊の元へ行き、静かに告げた。
+「一条さんとの間に、何か隠していることがありますね？」
+
+%eqif v_found_diary, true, l_shake_down_partner_success
+
+:次へ,l_shake_down_fail
+
+*l_shake_down_partner_success
+# ラベルID: l_shake_down_partner_success
+# ラベル名: 榊への揺さぶり成功
+
+日記の存在をほのめかすと、榊は一瞬、鋭い視線を私に向けたが、すぐに笑ってごまかした。
+「…探偵は勘がいいな。少し、昔話でもしようか。」
+彼は私を自室に招き入れた。これはチャンスか、それとも罠か…？
+
+%set v_shakedown_success, true, 揺さぶり成功フラグ
+
+:彼の部屋へ行く,l_partner_room
+
+*l_shake_down_wife
+# ラベルID: l_shake_down_wife
+# ラベル名: 響子を問い詰める
+
+私は響子の元へ行き、同情するように、しかし核心を突いて尋ねた。
+「ご主人が亡くなる前、何か思い悩んでいませんでしたか？例えば、誰かとの関係について…」
+
+%eqif v_wife_coop, true, l_shake_down_wife_success
+
+:次へ,l_shake_down_fail
+
+*l_shake_down_wife_success
+# ラベルID: l_shake_down_wife_success
+# ラベル名: 響子への揺さぶり成功
+
+私が以前、彼女を気遣っていたためか、響子は私の言葉にすがるように話し始めた。
+「主人は…榊さんとのことばかり…。私、怖かったんです！」
+彼女は何かを知っている。もう少しで、真実が聞けそうだ。
+
+%set v_shakedown_success, true, 揺さぶり成功フラグ
+
+:話の続きを促す,l_wife_confession
+
+*l_shake_down_kousaka
+# ラベルID: l_shake_down_kousaka
+# ラベル名: 高坂を問い詰める
+
+私は高坂を捕まえ、単刀直入に聞いた。
+「あなたは、この山荘の全てを知っているはずだ。一条様が警戒していた人物は誰なんですか？」
+
+高坂は無表情に答える。
+「…探偵様、あまり嗅ぎまわらない方が、あなた様のためかと。」
+これは、脅しか…？
+
+:さらに問い詰める,l_ending_3_探偵死亡
+:引き下がる,l_interview_people_return
+
+*l_shake_down_fail
+# ラベルID: l_shake_down_fail
+# ラベル名: 揺さぶり失敗
+
+何の証拠もなしに問い詰めたため、相手は完全に警戒してしまった。
+「何を馬鹿なことを言っているんだ。」
+これ以上、この人物から情報を得るのは難しいだろう。
+
+:聞き込みに戻る,l_interview_people_return
+
+
+# --- 揺さぶり後の追加イベント ---
+
+*l_partner_room
+# ラベルID: l_partner_room
+# ラベル名: 榊の部屋
+
+榊の部屋は、意外にも質素だった。
+彼は、一条との過去、そして事業の失敗について、ぽつりぽつりと語り始めた。
+「…あいつは、俺から全てを奪った。家族も、プライドも…。」
+彼の目には、憎しみとは違う、複雑な色が浮かんでいた。
+
+:次へ,l_deduce_culprit
+
+*l_wife_confession
+# ラベルID: l_wife_confession
+# ラベル名: 響子の告白
+
+響子は泣きながら、全てを打ち明けた。
+彼女は榊を愛しており、一条を殺害する計画に協力してしまっていたのだ。
+「でも、殺すなんて…私は、止めたかったのに…！」
+
+彼女は共犯者だった。だが、主犯は榊で間違いないようだ。
+これで、全てのピースがはまった。
+
+:最終推理へ,l_deduce_culprit
+
+
+*l_deduce_culprit
+# ラベルID: l_deduce_culprit
+# ラベル名: 犯人を推理する
+
+集めた情報を元に、私は全員をラウンジに集めた。
+「皆さん、お集まりいただきありがとうございます。今から、私が導き出した結論をお話しします。」
+
+私はゆっくりと一同を見回した。
+「一条進さんを殺害した犯人は…あなただ！」
+
+私が指さしたのは…。
+
+:執事の高坂,l_accuse_kousaka
+:妻の響子,l_accuse_wife
+:ビジネスパートナーの榊,l_accuse_partner
+
+*l_accuse_kousaka
+# ラベルID: l_accuse_kousaka
+# ラベル名: 高坂を告発
+
+私が指さしたのは、執事の高坂だった。
+「あなたが、長年仕えた主人を…！一条さんは、あなたの裏切りに気づいていた！」
+
+高坂は静かに首を振った。
+「…探偵様、それは違います。」
+
+%eqif v_found_diary, true, l_kousaka_ask_diary
+
+:次へ,l_ending_3_探偵死亡
+
+*l_kousaka_ask_diary
+# ラベルID: l_kousaka_ask_diary
+# ラベル名: 高坂に日記の情報を突きつける
+
+「とぼけないでください。あなたは一条さんと榊さんの過去を知っていた。そして、奥様の動揺にも気づいていたはずだ。」
+
+%eqif v_found_letter, true, l_kousaka_ask_letter
+
+:次へ,l_ending_2_en罪
+
+*l_kousaka_ask_letter
+# ラベルID: l_kousaka_ask_letter
+# ラベル名: 高坂に手紙の情報を突きつける
+
+私がさらに手紙の存在を突きつけると、高坂の表情がすっと消えた。
+
+%eqif v_found_memo, true, l_ending_2_en罪
+
+:次へ,l_ending_8_黒幕
+
+*l_accuse_wife
+# ラベルID: l_accuse_wife
+# ラベル名: 妻を告発
+
+私が指さしたのは、妻の響子だった。
+「あなたが、夫である一条さんを…！」
+
+響子は泣き崩れた。
+「ち、違います…！私が主人を殺すわけないじゃありませんか！」
+
+%eqif v_found_letter, true, l_ending_2_en罪
+
+:次へ,l_ending_3_探偵死亡
+
+*l_accuse_partner
+# ラベルID: l_accuse_partner
+# ラベル名: 榊を告発
+
+私が指さしたのは、ビジネスパートナーの榊だった。
+「過去の事業の恨み…それが動機でしょう、榊さん！」
+
+%eqif v_found_diary, true, l_accuse_partner_with_diary
+
+:次へ,l_ending_2_en罪
+
+*l_accuse_partner_with_diary
+# ラベルID: l_accuse_partner_with_diary
+# ラベル名: 榊を日記の証拠で告発
+
+私が日記の存在を突きつけると、榊は観念したように笑った。
+「…ああ、そうだ。俺が殺した。」
+
+%eqif v_found_memo, true, l_accuse_partner_with_memo
+
+:次へ,l_ending_4_共犯者発見
+
+*l_accuse_partner_with_memo
+# ラベルID: l_accuse_partner_with_memo
+# ラベル名: 榊をメモの証拠で告発
+
+さらに、一条が握っていたメモを突きつける。
+「彼は、あなたの裏切りに気づいていた！」
+
+%eqif v_found_letter, true, l_ending_1_真相解明
+
+:次へ,l_ending_4_共犯者発見
+
+
+# --- エンディング ---
+
+*l_ending_1_真相解明
+# ラベルID: l_ending_1_真相解明
+# ラベル名: 真相解明エンド
+
+全ての証拠を突きつけられた榊は、ついに全てを白状した。
+彼は一条に昔破産させられたことを恨み、復讐の機会を狙っていた。
+そして、妻の響子を唆し、共同でこの計画を実行したのだ。
+響子は、榊を愛してしまっていた…。
+
+「完璧な推理だ、探偵。よくぞ見抜いた。」
+
+吹雪が止み、やがて警察が到着した。
+二人は逮捕され、事件は解決した。
+私の探偵としての日々は、まだ続く。
+
+【エンディング 1: 真相解明】
+%end
+
+*l_ending_2_en罪
+# ラベルID: l_ending_2_en罪
+# ラベル名: 冤罪エンド
+
+私の推理には、決定的な証拠が欠けていた。
+告発された人物は、アリバイを完璧に証明してみせた。
+
+後日、警察の捜査により、真犯人は全く別の人物だったことが判明する。
+私は誤った推理で無実の人を追い詰めた探偵として、その信用を完全に失った。
+
+【エンディング 2: 冤罪】
+%end
+
+*l_ending_3_探偵死亡
+# ラベルID: l_ending_3_探偵死亡
+# ラベル名: 探偵死亡エンド
+
+私が犯人を名指しした、その瞬間。
+ラウンジの電気が、ふっと消えた。
+暗闇の中、私は背中に強い衝撃を感じ、意識が遠のいていった…。
+
+犯人を特定するには、情報が足りなすぎたようだ。
+
+【エンディング 3: 探偵死亡】
+%end
+
+*l_ending_4_共犯者発見
+# ラベルID: l_ending_4_共犯者発見
+# ラベル名: 共犯者発見エンド
+
+榊は犯行を認めたが、彼の目にはまだ余裕があった。
+「だが、俺一人でやったと思うなよ？」
+
+私の推理は、まだ終わっていなかった。
+この事件には、もう一人…共犯者がいる。
+しかし、それを突き止める前に、私の時間は終わってしまった。
+
+【エンディング 4: 共犯者発見】
+%end
+
+*l_ending_8_黒幕
+# ラベルID: l_ending_8_黒幕
+# ラベル名: 黒幕エンド
+
+高坂は、それまでの弱々しい執事の仮面を脱ぎ捨て、冷たい笑みを浮かべた。
+「…素晴らしい推理だ、探偵。だが、あなたは知りすぎた。」
+
+そうだ、この事件は単なる復讐劇などではない。
+一条、榊、そして響子…彼らは皆、この男…高坂に操られていたに過ぎない。
+彼こそが、全てを裏で操っていた黒幕だったのだ。
+
+「全てを知ったあなたを生かしておくわけにはいかない。」
+
+彼の合図と共に、私の意識は闇に落ちていった…。
+
+【エンディング 8: 黒幕】
+%end
+
+
+*l_find_escape_route
+# ラベルID: l_find_escape_route
+# ラベル名: 脱出ルートを探す
+犯人捜しより、まずはこの山荘から安全に脱出する方法を探すべきだ。
+危険すぎる。
+
+%eqif v_wife_coop, true, l_find_escape_route_with_wife
+
+:一人で厨房から裏口を探す,l_escape_kitchen
+:一人で通信手段を探す,l_escape_communication
+
+*l_find_escape_route_with_wife
+# ラベルID: l_find_escape_route_with_wife
+# ラベル名: 響子と脱出ルートを探す
+
+響子さんなら、何か知っているかもしれない…。
+彼女に声をかけてみようか。
+
+:響子に脱出の相談をする,l_ending_6_協力脱出
+:やはり一人で脱出する,l_find_escape_route_solo
+
+*l_escape_kitchen
+# ラベルID: l_escape_kitchen
+# ラベル名: 裏口を探す
+
+厨房には、食料を運び込むための小さな裏口があった。
+鍵はかかっているが、古びていて、何とか壊せそうだ。
+しかし、外は猛吹雪だ。無事に麓までたどり着けるか…
+
+:覚悟を決めて外に出る,l_ending_7_遭難
+:やはり危険だ、やめておく,l_find_escape_route_return
+
+*l_escape_communication
+# ラベルID: l_escape_communication
+# ラベル名: 通信手段を探す
+
+屋根裏部屋に、古い無線機が置かれているのを見つけた。
+幸い、予備電源でまだ動くようだ。
+使い方など分からないが、とにかくスイッチを入れてみる。
+
+:電源を入れる,l_ending_5_単独生還
+:やはり危険だ、やめておく,l_find_escape_route_return
+
+*l_find_escape_route_return
+# ラベルID: l_find_escape_route_return
+# ラベル名: 脱出探しに戻る
+
+他の方法を探そう。
+
+:厨房から裏口を探す,l_escape_kitchen
+:通信手段を探す,l_escape_communication
+:脱出を諦め、調査に戻る,l_interview_people
+
+
+*l_find_escape_route_solo
+# ラベルID: l_find_escape_route_solo
+# ラベル名: 一人で脱出する
+
+やはり、彼女を巻き込むのは危険だ。一人で道を探そう。
+
+:厨房から裏口を探す,l_escape_kitchen
+:通信手段を探す,l_escape_communication
+
+
+# --- 脱出ルートエンディング ---
+
+*l_ending_5_単独生還
+# ラベルID: l_ending_5_単独生還
+# ラベル名: 単独生還エンド
+
+必死にダイヤルを回していると、偶然、救助を求める信号が繋がった。
+数時間後、吹雪が弱まったタイミングで、救助隊のヘリが私を助けに来てくれた。
+
+山荘に残された人々がどうなったのか、私には分からない。
+だが、私は生き延びたのだ。
+
+【エンディング 5: 単独生還】
+%end
+
+*l_ending_6_協力脱出
+# ラベルID: l_ending_6_協力脱出
+# ラベル名: 協力脱出エンド
+
+私が脱出の相談をすると、響子はこくりと頷いた。
+「…わかりました。ここから逃げましょう。私に考えがあります。」
+
+彼女に案内されたのは、古い食料庫の奥にある、今は使われていない搬出口だった。
+幸い、外の積雪もまだ少ない。
+
+私たちは互いに助け合い、無事に麓の村までたどり着くことができた。
+彼女の協力がなければ、不可能だっただろう。
+
+【エンディング 6: 協力脱出】
+%end
+
+*l_ending_7_遭難
+# ラベルID: l_ending_7_遭難
+# ラベル名: 遭難エンド
+
+裏口から外に出た途端、猛烈な吹雪が体に叩きつける。
+一寸先は闇だ。
+
+どれくらい歩いただろうか。
+次第に足の感覚がなくなり、私の意識は、深い雪の中に閉ざされた。
+
+【エンディング 7: 遭難】
+%end
+
+# --- ここまでシナリオスクリプト ---
+-></script>
+  <script type="text/javascript" src="js/engine.js"></script>
+</body>
+</html>
