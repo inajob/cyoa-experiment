@@ -66,8 +66,8 @@ function clear(){
 
 function addText(s){
   let e = document.createElement("div")
-  let t = document.createTextNode(s)
-  e.appendChild(t)
+  // If the string is empty, use a non-breaking space to ensure the line is rendered.
+  e.innerHTML = s.length === 0 ? "&nbsp;" : s
   view.appendChild(e)
 }
 

@@ -1,0 +1,825 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta property="og:title" content="CYOA Experiment -孤島からの脱出-" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://inajob.github.io/cyoa-experiment/story2.html" />
+<meta property="og:image" content="https://inajob.github.io/cyoa-experiment/img/logo-sns.png" />
+<style>
+#view{
+  padding: 2em;
+  max-width: 800px;
+  margin: 2em auto;
+  background-color: #333;
+  color: #eee;
+  font-family: serif;
+}
+button{
+  padding: 1em;
+  width: 100%;
+  margin-top: 1em;
+  background-color: #4a5a6a;
+  color: #fff;
+  border: 1px solid #6b7b8b;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease;
+}
+button:hover{
+  background-color: #5a6a7a;
+}
+body {
+  background-color: #222;
+  color: #ccc;
+}
+a {
+  color: #a0c0ff;
+}
+.desc{
+  font-size: small;
+  padding: 1em;
+}
+</style>
+</head>
+<body>
+  <h1>孤島からの脱出</h1>
+  <div id="view"></div>
+  <hr>
+  <div class="desc">
+    <p>これは、見知らぬ孤島に漂着したあなたが、生存と脱出、そして島の謎に挑むテキストアドベンチャーゲームです。</p>
+    <p>This is a CYOA(Create Your Own Adventure) game created by Gemini. See <a href="https://github.com/inajob/cyoa-experiment">inajob/cyoa-experiment</a> for details.</p>
+  </div>
+  <script id="main" type="cyoa-script"><!- 
+# This website content is released under the CC BY-SA 4.0 License, see LICENSE.
+# --- シナリオスクリプト ---
+%set v_found_food, false, 食料発見フラグ
+%set v_found_water, false, 水発見フラグ
+%set v_trust_akira, false, アキラとの信頼
+%set v_trust_sayaka, false, サヤカとの信頼
+%set v_half_hearted_choice, false, 中途半端な選択を繰り返す
+%set v_build_raft_perfect, false, 頑丈なイカダを完成
+%set v_build_raft_badly, false, 不完全なイカダ
+%set v_fix_radio, false, 無線機を修理
+%set v_solve_ruins_puzzle, false, 遺跡の謎を解いた
+%set v_activate_ship, false, 宇宙船を起動
+%set v_fail_activation, false, 起動失敗
+%set v_overcome_trial, false, 海の試練を乗り越えた
+%set v_build_raft_alone, false, 一人でイカダ完成
+%set v_final_conflict, false, 最後の対立
+%set v_fail_solve_puzzle, false, 謎解き失敗
+%set v_no_food, false, 食料なし
+%set v_no_water, false, 水なし
+%set v_obstacle_storm, false, 障害：嵐
+%set v_obstacle_radio_trouble, false, 障害：無線機トラブル
+%set v_obstacle_loose_rope, false, 障害：ロープ緩み
+%set v_found_ruins_entrance, false, 遺跡入口発見フラグ
+%set v_entered_ruins, false, 遺跡内部進入フラグ
+%set v_path_tendency, '', ルート傾向
+# ラベルID: l_act1_start_1
+# ラベル名: 第一幕開始 1/5
+焼けるような喉の痛みで、意識がゆっくりと浮上する。
+耳にまとわりつくのは、寄せては返す冷たい波の音。
+:次へ,l_act1_start_2
+
+*l_act1_start_2
+# ラベルID: l_act1_start_2
+# ラベル名: 第一幕開始 2/5
+濡れた砂が肌に張り付き、体温を容赦なく奪っていく。
+どうやら、乗っていた船が嵐に遭い、海に投げ出されたらしい。
+:次へ,l_act1_start_3
+
+*l_act1_start_3
+# ラベルID: l_act1_start_3
+# ラベル名: 第一幕開始 3/5
+ゆっくりと身を起こし、辺りを見渡す。
+見上げた空は残酷なほど青く、目の前にはどこまでも続く水平線。
+そして背後には、黒々としたジャングルの口が不気味に開いていた。
+:次へ,l_act1_start_4
+
+*l_act1_start_4
+# ラベルID: l_act1_start_4
+# ラベル名: 第一幕開始 4/5
+ここはどこだ？記憶は曖昧で、絶望が胃を締め付ける。
+だが、死んでたまるか。
+そんな単純な怒りが、冷え切った体の芯に、か細い熱を灯した。
+:次へ,l_act1_start_5
+
+*l_act1_start_5
+# ラベルID: l_act1_start_5
+# ラベル名: 第一幕開始 5/5
+まずは、どうする？
+:今はただ生き延びることだけを考えよう。まずは水と安全な寝床だ。,l_find_water_shelter
+:このまま海岸で待っていても助けは来ない。危険を冒してでも、この島の正体を探るべきだ。,l_explore_jungle
+
+*l_find_water_shelter
+# ラベルID: l_find_water_shelter
+# ラベル名: 水とシェルター探し
+
+思考は単純だった。生きる。そのためには水が、そして雨風をしのげる場所が必要だ。
+私は、背後の不気味な森に背を向け、どこまでも続く海岸線を歩き始めた。
+%set v_path_tendency, 'realism', ルート傾向：現実主義
+
+太陽に焼かれた岩肌を、祈るような気持ちで舐めるように見て回る。
+やがて、黒い染みが滲む岩の隙間に、一滴、また一滴と光るものを見つけた。
+毒かもしれない、という理性の声が聞こえる。だが、喉の痛みはそんな躊躇いをあざ笑うかのように、私を突き動かした。
+鉄錆のような、生臭い味が舌に広がった。だが、それは紛れもなく命の水だった。
+%set v_found_water, true, 水発見フラグ
+
+わずかに人心地がつき、次なる目標、今夜の寝床を探す。
+波が打ち付けない、風が唸りを上げない、そんな場所。潮風に抉られた岩陰が、まるで母親の腕のように、私を招いているように見えた。
+中は狭く、獣の匂いがしたが、今は関係ない。ここで夜を明かす。
+%set v_found_shelter, true, シェルター発見フラグ
+
+最後に食料だ。見つけたのは、フジツボに覆われた貝や、ぬるりとした海藻。
+火を起こす術などない。目を閉じ、ただの『燃料』として、無心で口に放り込んだ。
+%set v_found_food, true, 食料発見フラグ
+
+:次へ,l_act1_end
+
+*l_explore_jungle
+# ラベルID: l_explore_jungle
+# ラベル名: ジャングル探索
+
+海岸で助けを待つのが賢明だろう。だが、この島に満ちる異様な気配が、私の本能をざわつかせる。
+答えは、この暗闇の中にある。そう確信にも似た衝動に駆られ、私は黒い森へと足を踏み入れた。
+%set v_path_tendency, 'exploration', ルート傾向：探求
+
+一歩入るだけで、空気が変わった。湿った土の匂いと、腐った花の甘い香りが混じり合って鼻をつく。
+頭上では、名も知らぬ鳥がガラスを引っ掻くような声で鳴き、巨大なシダの葉が、まるで生き物のように行く手を阻む。
+
+どれくらい歩いただろうか。疲労が限界に達したその時、不意に視界が開けた。
+そこに、あるはずのないものが、あった。巨大な、石の建造物だ。
+蔦に覆われ、分厚い苔に覆われているが、その幾何学的な直線と曲線は、自然が生み出すものとは明らかに異質だった。
+表面には、見たこともない紋様がびっしりと刻まれている。それはまるで、巨大な墓標のようにも、あるいは天を突く神殿のようにも見えた。
+暗い入口が、私を誘っている。
+%set v_found_ruins_entrance, true, 遺跡入口発見フラグ
+
+:この奥に答えがある。さらに探索する,l_enter_structure
+:今は危険だ。海岸へ引き返す,l_return_to_beach
+
+*l_enter_structure
+# ラベルID: l_enter_structure
+# ラベル名: 構造物に入る
+
+好奇心は、恐怖に打ち勝った。私はごくりと喉を鳴らし、暗い入口の向こう側へと、吸い込まれるように足を踏み入れた。
+途端に、ジャングルの喧騒が嘘のように途絶える。しんと静まり返った回廊に、ひやりと冷たい、淀んだ空気が満ちていた。
+光源は見当たらない。だが、壁を流れる紋様そのものが、まるで呼吸するかのように、青白い光を明滅させている。
+足元には、滑らかな金属でできた、有機的な曲線を持つ機械の残骸。それはまるで、巨大な生物の骨のようにも見えた。
+これは、人間の作ったものではない。私の理解を、常識を、根底から覆す何かが、この奥で眠っている。
+%set v_entered_ruins, true, 遺跡内部進入フラグ
+
+:次へ,l_act1_end
+
+*l_return_to_beach
+# ラベルID: l_return_to_beach
+# ラベル名: 海岸へ引き返す
+
+あの入口の奥から、何か得体の知れないものが、私を見ている。そんな悪寒が背筋を走った。
+今はダメだ。好奇心のために命を捨てるのは愚か者のすることだ。
+私は名残惜しさを振り払うように踵を返し、再びジャングルを突き進んだ。背後から感じる視線が消えるまで、一度も振り返らなかった。
+
+海岸に戻った私は、半ば無心で生存のための作業に没頭した。
+岩清水で喉を潤し、磯のものを口に運ぶ。あの異様な建造物の記憶を、現実的な行動で上書きしようとしているかのようだった。
+%set v_found_food, true, 食料発見フラグ
+%set v_found_water, true, 水発見フラグ
+
+:次へ,l_act1_end
+
+*l_act1_end
+# ラベルID: l_act1_end
+# ラベル名: 第一幕終了
+
+空がオレンジから深い藍色に染まり、容赦ない太陽が海に沈むと、島の空気が再び変わった。
+昼間の喧騒は止み、代わりに、喉の奥で唸るような低い獣の声や、虫たちの不気味な羽音が闇を満たし始める。
+シェルターの岩陰（あるいは遺跡の入口）で、私は膝を抱える。
+今日手に入れたもの、見つけたもの。それはささやかな希望か、それとも更なる絶望への入口か。
+今はただ、この長い夜を生き延びなければならない。疲労が鉛のように体にのしかかる中、私は明日昇るであろう太陽のことだけを考え、固く目を閉じた。
+
+:次へ,l_act2_start
+
+*l_act2_start
+# ラベルID: l_act2_start
+# ラベル名: 第二幕開始
+
+夜の闇をこじ開けるように、水平線から光が差し込む。生きている。
+その事実だけが、私を再び行動へと駆り立てた。
+食料や水の確保、あるいは島の探索。昨日と同じことを繰り返そうとした、その時だった。
+見慣れたはずの海岸線の、その先に。細く、しかし真っ直ぐに天へと昇る、一筋の煙。
+見間違いではない。火だ。人がいる…！
+心臓が激しく高鳴る。それは希望か、それとも新たな脅威の兆候か。
+確かめるしかなかった。私は砂を蹴り、煙の根元へと向かって走り出した。
+
+*l_encounter_akira
+# ラベルID: l_encounter_akira
+# ラベル名: アキラとの遭遇
+
+息を切らして煙の元にたどり着いた私の目に飛び込んできたのは、焚き火、そして、一人の男の背中だった。
+彼は黙々と、しかし驚くほど手際よく、漂着物を大きさや種類ごとに分類し、頑丈そうな木材をロープで組み上げている。
+その横顔は、希望も絶望も浮かべていない。ただ、やるべきことをやる、という鋼のような意志だけがそこにあった。
+私が立てた物音に、男は素早く振り返る。その手には、先端を鋭く尖らせた木片。厳しい目が、私を頭のてっぺんからつま先まで射抜いた。
+「…君も遭難者か。俺はアキラだ。こんな島で、まさか他に人がいるとはな。」
+彼は現実主義者で、この島からの脱出を最優先に考えているようだ。
+どうやら、頑丈なイカダを作ろうとしているらしい。
+
+:彼の現実的な考えに賛同し、イカダ作りを手伝う,l_cooperate_akira
+:彼とは距離を置き、自分のペースで行動する,l_distance_akira
+
+*l_cooperate_akira
+# ラベルID: l_cooperate_akira
+# ラベル名: アキラと協力
+
+この男の言うことは正しい。夢や謎を追っている場合ではない。
+私は黙って頷き、彼が分類していた木材の一つを手に取った。
+私の行動を見て、アキラは初めて少しだけ警戒を解いたようだった。
+「…話が早くて助かる。俺一人では、いつになるか分からなかったからな」
+ぶっきらぼうな口調だが、その声には確かな安堵が滲んでいた。
+彼は作業の合間に、浜辺に打ち上げられたコンテナの一つを指差した。
+「あの中に、壊れた無線機がある。イカダが無駄になった時の、最後の保険だ」
+彼の思考には一切の無駄がない。
+%set v_trust_akira, true, アキラとの信頼
+
+その日から、過酷だが目的のある日々が始まった。
+巨大な流木を運び、ロープを編み、帆を張る。二人の間に会話は少なかったが、一つの目標に向かう確かな一体感がそこにはあった。
+問題は、イカダの品質だ。
+
+:嵐にも耐えられるよう、良質な材料を厳選し、丁寧に作業する,l_build_raft_perfect_choice
+:一刻も早く脱出するため、手近な材料で急いで作る,l_build_raft_badly_choice
+
+*l_build_raft_perfect_choice
+# ラベルID: l_build_raft_perfect_choice
+# ラベル名: イカダ完璧建造選択
+
+時間はかかるかもしれない。だが、俺たちの命を預ける船だ。妥協は死を意味する。俺とアキラの意見は一致した。
+俺たちは乾燥して硬い流木だけを選び、繊維がちぎれにくい蔦でロープを編み、一日一日、着実に作業を進めた。
+数日後、目の前に現れたのは、もはや『イカダ』と呼ぶのがはばかられるほど、精巧で頑丈な船だった。
+「…これなら、あの嵐が来ても耐えられる」
+アキラが、誇らしげに船体を叩きながら言った。その横顔には、初めて会った時の険しさはもうなかった。
+%set v_build_raft_perfect, true, 頑丈なイカダを完成
+
+:次へ,l_encounter_sayaka
+
+*l_build_raft_badly_choice
+# ラベルID: l_build_raft_badly_choice
+# ラベル名: イカダ不完全建造選択
+
+一刻も早く、この島から離れたい。その焦りが、俺たちの判断を鈍らせた。
+質より量、丁寧さより速さ。俺たちは、まだ湿り気の残る木材や、強度の分からない漂着ロープも構わず使った。
+数時間で組み上がったイカダは、一見すると船の形をしていた。だが、その歪んだ骨格と、頼りない結び目は、素人目にも明らかだった。
+アキラは完成したイカダを苦々しげに眺め、吐き捨てるように言った。
+「…晴天が続くことを祈るしかないな。こんなものは、少し時化れば海の藻屑だ」
+%set v_build_raft_badly, true, 不完全なイカダ
+
+:次へ,l_encounter_sayaka
+
+*l_distance_akira
+# ラベルID: l_distance_akira
+# ラベル名: アキラと距離を置く
+
+彼の計画は合理的だ。だが、私の心は別の可能性を指し示していた。
+あの、人間以外の何かが作ったとしか思えない建造物。あれを無視してこの島を去ることは、後悔に繋がる気がした。
+私の考えを聞いたアキラは、呆れたように肩をすくめた。
+「そうか。おとぎ話を信じるタイプか。まあ、無理強いはしない。だが、腹が減っても、嵐が来ても、助けてやれんぞ」
+彼はそれきり私に興味を失ったように、再びイカダ作りの作業に戻った。その背中が、私を拒絶しているように見えた。
+私は一人、再び島の探索へと向かった。アキラの言葉が、小さな棘のように心に引っかかりながら。
+
+:次へ,l_encounter_sayaka
+
+*l_encounter_sayaka
+# ラベルID: l_encounter_sayaka
+# ラベル名: サヤカとの遭遇
+
+アキラと協力するにせよ、しないにせよ、運命は私にもう一人の生存者を引き合わせた。
+それは、あの異様な石の建造物の前での、唐突な出会いだった。
+一人の女性が、巨大な石壁に刻まれた紋様に、まるで取り憑かれたかのように見入っている。
+手にした炭で、羊皮紙らしきものに必死に何かを書き写しているその集中力は凄まじく、私が近づくまで全く気づく様子はなかった。
+
+私の存在に気づくと、彼女は一瞬驚いた顔をしたが、すぐに好奇心に満ちた輝くような笑顔を向けた。
+「見て！この紋様、明らかに地球のどの文明のものとも違う！あなたもそう思うでしょ？私はサヤカ。あなたも、この島の『声』を聞いたのね？」
+彼女は早口に、そして熱っぽく語りかける。その瞳は、現実の絶望ではなく、未知への尽きない探求心に燃えていた。
+アキラとは、何もかもが正反対の人間だった。
+
+:彼女の情熱に共感し、共に島の謎を解き明かす,l_align_sayaka
+:アキラとの現実的な脱出計画に戻る（あるいはそれを優先する）,l_continue_akira
+:どちらにも与せず、自分の道を探す,l_half_hearted
+:誰の力も借りず、一人で脱出を目指す,l_build_raft_alone_choice
+
+
+*l_align_sayaka
+# ラベルID: l_align_sayaka
+# ラベル名: サヤカと同調
+
+アキラの現実的な計画が頭をよぎる。だが、目の前のサヤカの輝く瞳と、背後にある巨大な謎。どちらが私の心を掴んだかは、明らかだった。
+「やっぱり！あなたも『そちら側』の人間なのね！」
+サヤカは自分のことのように喜び、私を遺跡の奥へと手招きした。「さあ、行きましょう。私たちの常識が、ひっくり返る瞬間へ！」
+%set v_trust_sayaka, true, サヤカとの信頼
+
+その日から、俺たちの時間は現実のサバイバルから、古代の謎を追う冒険へと変わった。
+壁の紋様を一つ一つ写し取り、奇妙な装置の構造を分析し、夜空の星の配置と遺跡の関係について、二人で飽きることなく議論を交わした。
+そして、ついに核心に迫る選択を迫られる。
+
+:この謎を最後まで見届ける。徹底的に解明する,l_solve_ruins_puzzle_event
+:深入りは危険だ。謎解きはほどほどにする,l_act2_end
+
+*l_solve_ruins_puzzle_event
+# ラベルID: l_solve_ruins_puzzle_event
+# ラベル名: 遺跡謎解明イベント
+
+サヤカと共に、遺跡の奥深くを調査し、ついにその謎を完全に解明した。
+この遺跡は、地球のものではない、異星文明の遺産だったのだ。
+%set v_solve_ruins_puzzle, true, 遺跡の謎を解いた
+
+# 仮のジャンプ
+:次へ,l_act2_end
+
+*l_continue_akira
+# ラベルID: l_continue_akira
+# ラベル名: アキラとの継続
+
+サヤカの言葉は魅力的だった。だが、それは『賭け』だ。俺は、アキラとの間で築き上げた、より確実な『現実』を選ぶことにした。
+「そう…残念。でも、あなたの決断を尊重するわ」
+サヤカは寂しそうに微笑んだ。「もし、その『現実』が息苦しくなったら、いつでもここに来て。謎は、いつでもあなたを待っているから」
+俺は彼女に背を向け、アキラの待つ海岸へと戻った。
+サヤカの言葉が、妙に耳に残った。だが、今は目の前の作業に集中する。イカダか、無線機か。俺たちの命運を分ける作業に。
+
+# If raft is bad, skip radio option
+%eqif v_build_raft_badly, true, l_continue_akira_no_radio_option
+
+:アキラと共に、無線機の修理を完了させる,l_fix_radio_choice
+:今はイカダの完成度を高めるのが先決だ,l_act2_end
+
+*l_continue_akira_no_radio_option
+# ラベルID: l_continue_akira_no_radio_option
+# ラベル名: アキラとの継続：無線機オプションなし
+
+アキラは、このイカダでは脱出が危ういと判断し、無線機修理よりもイカダの補強を優先すべきだと主張した。他のことに気を回す余裕はないようだ。
+:次へ,l_act2_end
+
+*l_fix_radio_choice
+# ラベルID: l_fix_radio_choice
+# ラベル名: 無線機修理選択
+
+アキラと共に、漂着した船の残骸から無線機を見つけ出し、修理を完了させた。
+これで救助を呼ぶことができる。
+「やったな！これで助かるぞ！」アキラが喜びに声を上げた。
+%set v_fix_radio, true, 無線機を修理
+
+# 仮のジャンプ
+:次へ,l_act2_end
+
+*l_half_hearted
+# ラベルID: l_half_hearted
+# ラベル名: 中途半端な態度
+
+現実的な脱出も、未知への探求も、どちらも捨てがたい。俺は、両方の可能性を天秤にかけたまま、中途半端な嘘を重ねることにした。
+アキラにはイカダ作りの知識があるふりをし、サヤカには古代文明への深い洞察があるように見せかけた。
+だが、メッキはすぐ剥がれる。アキラは俺の技術不足を訝しげに眺め、サヤカは俺の知識の浅さに首を傾げた。
+次第に、二人の会話から俺は外されるようになっていった。彼らの信頼を失い、俺は一人、海岸と遺跡の間を、まるで亡霊のように往復するだけだった。
+%set v_half_hearted_choice, true, 中途半端な選択を繰り返す
+
+# 仮のジャンプ
+:次へ,l_act2_end
+
+*l_build_raft_alone_choice
+# ラベルID: l_build_raft_alone_choice
+# ラベル名: 単独イカダ建造選択
+
+現実主義のアキラも、夢見がちなサヤカも、信用ならない。信じられるのは、自分の腕だけだ。
+俺は、誰にも告げず、一人だけの脱出計画を開始した。
+それは、想像を絶する苦行だった。巨大な流木を一人で動かし、夜通しロープを編む。
+高熱にうなされる日も、空腹で倒れそうになる日もあった。
+だが、俺は歯を食いしばり、作業を続けた。孤独が、俺の唯一の仲間だった。
+%set v_build_raft_alone, true, 一人でイカダ完成
+
+# 仮のジャンプ
+:次へ,l_act2_end
+
+*l_act2_end
+# ラベルID: l_act2_end
+# ラベル名: 第二幕終了
+
+%eqif v_trust_akira, true, l_act2_end_akira_summary
+%eqif v_trust_sayaka, true, l_act2_end_sayaka_summary
+%eqif v_half_hearted_choice, true, l_act2_end_half_hearted_summary
+%eqif v_build_raft_alone, true, l_act2_end_solitude_summary
+:次へ,l_act2_end_default_summary
+
+*l_act2_end_akira_summary
+# ラベルID: l_act2_end_akira_summary
+# ラベル名: 第二幕終了：アキラ協力要約
+空と海の色、風の匂い。俺たちの意識は、すべて現実的な脱出へと注がれていた。
+アキラとの間には、多くを語らずとも通じ合える、戦友のような空気が流れている。
+目の前には、具体的な脱出手段。あとは、最後の決断を下すだけだ。
+:次へ,l_act3_start
+
+*l_act2_end_sayaka_summary
+# ラベルID: l_act2_end_sayaka_summary
+# ラベル名: 第二幕終了：サヤカ協力要約
+もはや、ただ生き延びて島を出ることなど、どうでもよくなっていた。
+この島が隠している秘密、サヤカと共に追い求めてきた真実。その核心が、もう目の前にある。
+常識が覆される予感に、体が高揚している。あとは、最後の扉を開けるだけだ。
+:次へ,l_act3_start
+
+*l_act2_end_half_hearted_summary
+# ラベルID: l_act2_end_half_hearted_summary
+# ラベル名: 第二幕終了：中途半端要約
+アキラの冷たい視線。サヤカの失望のため息。二つの世界の狭間で、俺はどちらにも踏み切れずにいた。
+信頼という名の糸は切れかかり、俺の周りには、疑念と侮蔑の空気が渦巻いている。
+破滅の足音が、すぐそこまで聞こえていた。
+:次へ,l_act3_start
+
+*l_act2_end_solitude_summary
+# ラベルID: l_act2_end_solitude_summary
+# ラベル名: 第二幕終了：単独行動要約
+誰も信じない。誰も頼らない。その決意は、俺を孤独にしたが、同時に鋼の鎧ともなった。
+疲労と空腹が、常に思考を鈍らせようとする。だが、俺はたった一人で、この島に、そして運命に抗い続ける。
+すべては、自分の力で明日を掴むために。
+:次へ,l_act3_start
+
+*l_act2_end_default_summary
+# ラベルID: l_act2_end_default_summary
+# ラベル名: 第二幕終了：デフォルト要約
+
+プレイヤーは、この島での行動方針を固めた。
+最終的な決断を下すための準備が整った。
+:次へ,l_act3_start
+
+*l_act3_start
+# ラベルID: l_act3_start
+# ラベル名: 第三幕開始
+
+嵐の前の静けさ、という言葉が頭をよぎる。
+島の空気は張り詰め、まるで運命が息を殺して、俺の最後の選択を待っているかのようだ。
+ここまでの道のりが、全てこの瞬間のためにあった。
+俺の決断が、この島の、そして俺自身の物語の結末を、今、決定づける。
+
+%eqif v_found_food, false, l_starvation_end_exhaustion
+%eqif v_found_water, false, l_starvation_end_exhaustion
+
+*l_act3_start_continue
+# ラベルID: l_act3_start_continue
+# ラベル名: 第三幕開始継続
+
+%eqif v_trust_akira, true, l_check_both_trust
+%eqif v_trust_sayaka, true, l_final_decision_sayaka_path
+%eqif v_half_hearted_choice, true, l_final_decision_neutral_path
+# 単独イカダ建造はここで直接エンディングへ
+%eqif v_build_raft_alone, true, l_solitude_end_lonely_voyage
+
+# どのルートにも当てはまらない場合（エラーまたは未定義ルート）
+:エラー：ルートが特定できません,l_ending_check
+
+*l_check_both_trust
+# ラベルID: l_check_both_trust
+# ラベル名: 両方信頼しているかチェック
+アキラと築いた現実。サヤカと見つけた真実。二つの道が、頭の中で交錯する。
+%eqif v_trust_sayaka, true, l_final_decision_conflict_path
+:次へ,l_final_decision_akira_path
+
+*l_final_decision_conflict_path
+# ラベルID: l_final_decision_conflict_path
+# ラベル名: 葛藤ルート最終決断
+アキラとの現実的な脱出計画、サヤカとの島の真実の探求…
+私はどちらの可能性も捨てきれずにいたが、いよいよどちらか一方を選ばなければならない時が来た。
+島の外か、内か。現実か、真実か。
+私の最後の選択が、この物語の結末を決める。
+:最終的にアキラと脱出を目指す,l_final_decision_akira_path
+:最終的にサヤカと真実を探求する,l_final_decision_sayaka_path
+
+*l_final_decision_akira_path
+# ラベルID: l_final_decision_akira_path
+# ラベル名: アキラ協力ルート最終決断
+
+アキラの隣で、俺は完成したイカダ（あるいは修理された無線機）を前に、ただごとではない緊張感を覚えていた。
+水平線の彼方に、俺たちの『日常』がある。だが、この島がそう易々と俺たちを解放するとは思えなかった。
+案の定、最後の試練が牙を剥く。
+
+# 無線機ルートの場合、嵐でイカダが使えなくなる
+%eqif v_fix_radio, true, l_akira_path_storm_obstacle
+
+# イカダが完璧な場合も嵐
+%eqif v_build_raft_perfect, true, l_akira_path_storm_obstacle
+
+# それ以外（不完全なイカダ）の場合はロープが緩む
+:次へ,l_akira_path_rope_obstacle
+
+*l_akira_path_storm_obstacle
+# ラベルID: l_akira_path_storm_obstacle
+# ラベル名: アキラ協力ルート：障害（嵐）
+出航の直前、空がにわかに暗転し、海が唸りを上げた。嵐だ。
+完璧だと思われた計画に、自然という最大の変数が襲いかかる。
+%set v_obstacle_storm, true, 障害：嵐
+%eqif v_fix_radio, true, l_akira_path_storm_radio_choice
+:次へ,l_akira_path_storm_raft_choice
+
+*l_akira_path_storm_raft_choice
+# ラベルID: l_akira_path_storm_raft_choice
+# ラベル名: アキラ協力ルート：嵐（イカダ）の選択
+「くそっ、このタイミングでか…！」アキラが悪態をつく。
+イカダは波に煽られ、今にも岸壁に叩きつけられそうだ。
+このまま海に出るのは無謀に近い。だが、嵐がいつ止むのか、あるいはさらに強くなるのか、誰にも分からない。
+ここで足止めを食らうのは、別のリスクを意味していた。
+
+:この障害を乗り越え、現実的な脱出を強行する,l_overcome_trial_choice
+:嵐が過ぎるのを待つ間に、島の謎に関する手がかりを追う,l_pursue_ambiguous_clue
+
+*l_akira_path_storm_radio_choice
+# ラベルID: l_akira_path_storm_radio_choice
+# ラベル名: アキラ協力ルート：嵐（無線機）の選択
+イカダはもう使えない。唯一の希望は、この無線機だけだ。
+:嵐の中、無線機で救助信号を送る,l_normal_end_rescue_signal
+
+*l_akira_path_rope_obstacle
+# ラベルID: l_akira_path_rope_obstacle
+# ラベル名: アキラ協力ルート：障害（ロープ）
+出航直前、イカダの最も重要な結び目の一つが、不吉な音を立てて緩んでいることに気づいた。
+このままでは、海に出た瞬間に分解してしまうだろう。
+%set v_obstacle_loose_rope, true, 障害：ロープ緩み
+:この障害を乗り越え、現実的な脱出を強行する,l_overcome_trial_choice
+:このイカダは諦め、島の謎に関する手がかりを追う,l_pursue_ambiguous_clue
+
+*l_pursue_ambiguous_clue
+# ラベルID: l_pursue_ambiguous_clue
+# ラベル名: 曖昧な手がかりを追う
+
+アキラとの現実的な脱出を諦め、島の謎に関する曖昧な手がかりを追うことにした。
+しかし、サヤカの専門知識なしでは、その謎を解き明かすことは困難だった。
+# もし既に解けていれば知識エンドへ
+%eqif v_solve_ruins_puzzle, true, l_knowledge_end_island_inheritor
+# 謎が解けていなければ永遠の探求者エンドへ
+:次へ,l_lost_end_eternal_seeker
+
+*l_overcome_trial_choice
+# ラベルID: l_overcome_trial_choice
+# ラベル名: 試練乗り越え選択
+
+%eqif v_build_raft_badly, true, l_rafting_failed_end_sea_scraps
+%eqif v_obstacle_storm, true, l_overcome_trial_storm
+%eqif v_obstacle_loose_rope, true, l_overcome_trial_rope
+:次へ,l_overcome_trial_generic # Fallback if no specific obstacle flag is set (shouldn't happen)
+
+*l_overcome_trial_storm
+# ラベルID: l_overcome_trial_storm
+# ラベル名: 試練乗り越え：嵐
+
+私たちは力を合わせ、突然の嵐を乗り越えた。荒れ狂う波を乗り越え、脱出への道を切り開いた。
+%set v_overcome_trial, true, 海の試練を乗り越えた
+:次へ,l_ending_check
+
+*l_overcome_trial_radio
+# ラベルID: l_overcome_trial_radio
+# ラベル名: 試練乗り越え：無線機
+
+私たちは力を合わせ、無線機のトラブルを解決した。通信を確立し、脱出への道を切り開いた。
+%set v_overcome_trial, true, 海の試練を乗り越えた
+:次へ,l_ending_check
+
+*l_overcome_trial_rope
+# ラベルID: l_overcome_trial_rope
+# ラベル名: 試練乗り越え：ロープ
+
+私たちは力を合わせ、イカダの緩んだロープを締め直した。足元を固め、脱出への道を切り開いた。
+%set v_overcome_trial, true, 海の試練を乗り越えた
+:次へ,l_ending_check
+
+*l_overcome_trial_generic
+# ラベルID: l_overcome_trial_generic
+# ラベル名: 試練乗り越え：汎用
+
+私たちは力を合わせ、最後の障害を乗り越えた。困難を乗り越え、脱出への道を切り開いた。
+%set v_overcome_trial, true, 海の試練を乗り越えた
+:次へ,l_ending_check
+
+*l_final_decision_sayaka_path
+# ラベルID: l_final_decision_sayaka_path
+# ラベル名: サヤカ協力ルート最終決断
+
+遺跡の最深部。壁の紋様は脈打つように光り、空気が奇妙なエネルギーで震えている。
+俺とサヤカは、ついにコントロールルームと思しき場所にたどり着いた。
+中央に鎮座するコンソールが、静かに俺たちを待っている。これが、この島の心臓部…。
+
+サヤカは息を呑み、震える声で言った。
+「…世界の真実か、あるいは破滅か。そのスイッチが、目の前にあるのよ」
+彼女の言う通りだ。これを起動させることは、単なる脱出以上の、計り知れない意味を持つ。
+
+%eqif v_solve_ruins_puzzle, false, l_set_fail_solve_puzzle_flag
+
+:運命を信じ、起動装置のスイッチを入れる,l_activate_ship_choice
+:危険を避け、この島の管理者として知識と共に生きる,l_knowledge_end_island_inheritor
+
+*l_set_fail_solve_puzzle_flag
+# ラベルID: l_set_fail_solve_puzzle_flag
+# ラベル名: 謎解き失敗フラグ設定
+（…だが、本当にこの遺跡の全てを理解できたのだろうか？一抹の不安が胸をよぎる）
+%set v_fail_solve_puzzle, true, 謎解き失敗
+# 失敗しても選択肢は表示される
+:次へ,l_activate_ship_choice
+
+*l_activate_ship_choice
+# ラベルID: l_activate_ship_choice
+# ラベル名: 宇宙船起動選択
+
+意を決して、起動装置を操作した。
+巨大な機械が唸りを上げ、光が満ちる。
+
+# 遺跡の謎を解き明かせていたかによって、起動の成否が決定される
+%eqif v_solve_ruins_puzzle, true, l_activation_success_event_1
+%eqif v_solve_ruins_puzzle, false, l_fail_activation_event
+# フォールバック
+:次へ,l_fail_activation_event
+
+*l_activation_success_event_1
+# ラベルID: l_activation_success_event_1
+# ラベル名: 起動成功イベント1
+コンソールに手を伸ばすと、紋様が激しく明滅し、心地よいハミングが遺跡全体に響き渡った。
+:次へ,l_activation_success_event_2
+
+*l_activation_success_event_2
+# ラベルID: l_activation_success_event_2
+# ラベル名: 起動成功イベント2
+足元の床が静かに振動し、閉ざされていたシャッターが開き、外の光が差し込んでくる。
+:次へ,l_activation_success_event_3
+
+*l_activation_success_event_3
+# ラベルID: l_activation_success_event_3
+# ラベル名: 起動成功イベント3
+…成功だ。俺たちは、この島の心臓部を、完全に掌握したのだ。
+%set v_activate_ship, true, 宇宙船を起動
+:次へ,l_ending_check
+
+*l_fail_activation_event
+# ラベルID: l_fail_activation_event
+# ラベル名: 起動失敗イベント
+
+起動装置は激しい音を立てて停止し、沈黙した。
+どうやら、起動には失敗したようだ。
+%set v_fail_activation, true, 起動失敗
+
+:次へ,l_ending_check
+
+*l_final_decision_neutral_path
+# ラベルID: l_final_decision_neutral_path
+# ラベル名: 中途半端ルート最終決断
+
+ついに、その時が来た。海岸と遺跡の中間地点。まるで俺の心を映すかのように、アキラとサヤカが、それぞれ俺の左右に立っていた。
+「どっちなんだ」アキラが、尖らせた木片を手に、低い声で言う。「俺の船に乗るのか、それとも彼女のおとぎ話に付き合うのか」
+「あなたの答えを聞かせて」サヤカが、悲痛な表情で俺に問う。「私たちは、同じものを見ているはずでしょう？」
+二人の視線が、俺に突き刺さる。俺の沈黙が、この場の緊張を限界まで高めていく。
+俺が答えられずにいると、二人の間の空気が、ついに爆発した。
+%set v_final_conflict, true, 最後の対立
+
+:次へ,l_ending_check
+
+*l_ending_check
+# ラベルID: l_ending_check
+# ラベル名: エンディング判定
+
+# エンディング判定ロジック（優先順位順）
+
+# 1. バッドエンドのチェック（最優先）
+%eqif v_no_food, true, l_starvation_end_exhaustion
+%eqif v_no_water, true, l_starvation_end_exhaustion
+%eqif v_half_hearted_choice, true, l_check_betrayal_end
+# サヤカ協力ルートでの失敗
+%eqif v_fail_solve_puzzle, true, l_lost_end_eternal_seeker
+
+*l_check_betrayal_end
+# ラベルID: l_check_betrayal_end
+# ラベル名: 裏切りエンディングチェック
+%eqif v_final_conflict, true, l_betrayal_end_outcome_of_betrayal
+:次へ,l_ending_check_continue_from_betrayal
+
+*l_ending_check_continue_from_betrayal
+# ラベルID: l_ending_check_continue_from_betrayal
+# ラベル名: エンディングチェック継続（裏切り後）
+
+# 2. トゥルーエンドのチェック
+%eqif v_activate_ship, true, l_true_end_return_to_stars
+%eqif v_fail_activation, true, l_knowledge_end_island_inheritor
+
+# 3. グッドエンド/ノーマルエンドのチェック
+%eqif v_overcome_trial, true, l_check_good_end_raft_perfect
+
+*l_check_good_end_raft_perfect
+# ラベルID: l_check_good_end_raft_perfect
+# ラベル名: グッドエンドイカダ完璧チェック
+%eqif v_build_raft_perfect, true, l_check_good_end_trust_akira
+:次へ,l_ending_check_continue_from_good_end
+
+*l_check_good_end_trust_akira
+# ラベルID: l_check_good_end_trust_akira
+# ラベル名: グッドエンドアキラ信頼チェック
+%eqif v_trust_akira, true, l_good_end_two_survivors
+:次へ,l_ending_check_continue_from_good_end
+
+*l_ending_check_continue_from_good_end
+# ラベルID: l_ending_check_continue_from_good_end
+# ラベル名: エンディングチェック継続（グッドエンド後）
+%eqif v_fix_radio, true, l_normal_end_rescue_signal
+%eqif v_build_raft_alone, true, l_solitude_end_lonely_voyage
+
+# どのエンディング条件も満たされなかった場合のフォールバック（エラーまたは汎用バッドエンド）
+:エラー：エンディング条件を満たしませんでした,l_generic_bad_end
+
+# --- エンディング定義 ---
+
+*l_true_end_return_to_stars
+# ラベルID: l_true_end_return_to_stars
+# ラベル名: 【True End】星への帰還
+
+足元が激しく揺れ、轟音と共に視界が真っ白に染まる。古代の宇宙船は、数千年の眠りから覚め、重力という名の鎖を断ち切った。
+窓の外で、見慣れた島が、そして青い地球がみるみる小さくなっていく。サヤカと俺は、言葉もなく、ただ星々の海へと続く光の道を見つめていた。
+【True End】星への帰還
+%end
+
+*l_knowledge_end_island_inheritor
+# ラベルID: l_knowledge_end_island_inheritor
+# ラベル名: 【Knowledge End】島の継承者
+
+起動は叶わなかった。だが、俺たちは別のものを手に入れた。この島のすべてを司る、古代の知識。
+コンソールに触れると、星の運行、生命の歴史、時空の秘密が、奔流となって頭に流れ込んでくる。
+俺たちは脱出を止め、この島の新たな管理者として、永遠に近い時を生きることを選んだ。
+【Knowledge End】島の継承者
+%end
+
+*l_good_end_two_survivors
+# ラベルID: l_good_end_two_survivors
+# ラベル名: 【Good End】二人の生還
+
+嵐を越え、飢えをしのぎ、俺とアキラを乗せたイカダは、ついに文明の光を見つけた。
+遠くに見える街の灯を見た時、どちらからともなく、乾いた笑いがこぼれた。
+過酷な日々は終わった。俺たちの間には、言葉にするには野暮な、だが決して壊れることのない絆が結ばれていた。
+【Good End】二人の生還
+%end
+
+*l_normal_end_rescue_signal
+# ラベルID: l_normal_end_rescue_signal
+# ラベル名: 【Normal End】救助信号
+
+ノイズ混じりの無線機に、何度も、何度も呼びかけを繰り返す。諦めかけたその時、雑音の向こうから、微かな応答が聞こえた。
+『…こちら、沿岸警備隊。感度良好』
+その声を聞いた瞬間、俺とアキラは、崩れるように砂浜に座り込んだ。
+【Normal End】救助信号
+%end
+
+*l_solitude_end_lonely_voyage
+# ラベルID: l_solitude_end_lonely_voyage
+# ラベル名: 【Solitude End】孤独な航海
+
+たった一人、海と空の間に浮かぶ。昼は太陽に焼かれ、夜は凍える星空に怯えた。
+何度も死を覚悟した航海の果てに、俺はついに一隻の大型船を発見した。
+助かったのだ。だが、その喜びの中に、なぜか言いようのない空虚感が広がっていた。
+【Solitude End】孤独な航海
+%end
+
+*l_betrayal_end_outcome_of_betrayal
+# ラベルID: l_betrayal_end_outcome_of_betrayal
+# ラベル名: 【Betrayal End】裏切りの結末
+
+アキラの怒りと、サヤカの悲しみが、俺にぶつけられる。俺の欺瞞が引き起こした争いは、もはや止めようがなかった。
+最後に俺の目に映ったのは、二人の絶望した顔と、振り下ろされる木片だったか、あるいはただ、見捨てられて闇に沈んでいったのか…
+【Betrayal End】裏切りの結末
+%end
+
+*l_lost_end_eternal_seeker
+# ラベルID: l_lost_end_eternal_seeker
+# ラベル名: 【Lost End】永遠の探求者
+
+謎は、解けない。核心に近づくほど、それは形を変え、俺たちを嘲笑うかのように遠ざかる。
+サヤカはいつしか口をきかなくなり、ただ壁の紋様を写し続ける人形になった。
+俺もまた、この島の、終わらない謎に取り込まれた亡霊だ。
+【Lost End】永遠の探求者
+%end
+
+*l_starvation_end_exhaustion
+# ラベルID: l_starvation_end_exhaustion
+# ラベル名: 【Starvation End】力尽きる
+
+喉の渇きは痛みを超え、感覚を麻痺させた。胃は、もはや何も受け付けない。
+最後に見たのは、青く、あまりにも美しい空だった。
+ああ、こんな場所で、俺はただ、力尽きるのか…
+【Starvation End】力尽きる
+%end
+
+*l_rafting_failed_end_sea_scraps
+# ラベルID: l_rafting_failed_end_sea_scraps
+# ラベル名: 【Rafting Failed End】海の藻屑
+
+沖に出てすぐ、嫌な音が響いた。俺たちの焦りが編み上げたイカダが、最初の大きな波で無残に分解する。
+アキラの警告が正しかったのだ。冷たい海水が、後悔も絶叫も、すべてを飲み込んでいった。
+【Rafting Failed End】海の藻屑
+%end
+
+*l_generic_bad_end
+# ラベルID: l_generic_bad_end
+# ラベル名: 【Generic Bad End】
+
+何らかの理由でエンディング条件を満たせなかった。
+あなたは孤島で、静かに、あるいは過酷な運命を辿ることになるだろう。
+【Generic Bad End】
+%end
+
+# --- シナリオスクリプトここまで ---
+</script>
+  <script type="text/javascript" src="js/engine.js"></script>
+</body>
+</html>
