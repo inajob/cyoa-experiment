@@ -686,7 +686,6 @@ a {
 # ラベルID: l_check_betrayal_end
 # ラベル名: 裏切りエンディングチェック
 %eqif v_final_conflict, true, l_betrayal_end_outcome_of_betrayal
-:次へ,l_ending_check_continue_from_betrayal
 
 *l_ending_check_continue_from_betrayal
 # ラベルID: l_ending_check_continue_from_betrayal
@@ -703,13 +702,11 @@ a {
 # ラベルID: l_check_good_end_raft_perfect
 # ラベル名: グッドエンドイカダ完璧チェック
 %eqif v_build_raft_perfect, true, l_check_good_end_trust_akira
-:次へ,l_ending_check_continue_from_good_end
 
 *l_check_good_end_trust_akira
 # ラベルID: l_check_good_end_trust_akira
 # ラベル名: グッドエンドアキラ信頼チェック
 %eqif v_trust_akira, true, l_good_end_two_survivors
-:次へ,l_ending_check_continue_from_good_end
 
 *l_ending_check_continue_from_good_end
 # ラベルID: l_ending_check_continue_from_good_end
