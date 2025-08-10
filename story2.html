@@ -425,7 +425,7 @@ a {
 アキラとの約束を破り、一人で道を模索しようとした俺の心は、深い迷路に迷い込んだ。
 脱出への具体的な手段も、島の謎の核心に迫る手がかりも、まだ不明瞭なままだ。
 俺は、自分自身の矛盾に囚われていた。
-:次へ,l_act3_start
+:次へ,l_final_decision_neutral_path
 
 *l_act2_end_akira_summary
 # ラベルID: l_act2_end_akira_summary
@@ -483,10 +483,11 @@ a {
 # ラベルID: l_act3_start_continue
 # ラベル名: 第三幕開始継続
 
+%eqif v_half_hearted_abandon_akira, true, l_act2_end_half_hearted_abandon_akira_summary
+%eqif v_half_hearted_choice, true, l_final_decision_neutral_path
+
 %eqif v_trust_akira, true, l_check_both_trust
 %eqif v_trust_sayaka, true, l_final_decision_sayaka_path
-%eqif v_half_hearted_choice, true, l_final_decision_neutral_path
-# 単独イカダ建造はここで直接エンディングへ
 %eqif v_build_raft_alone, true, l_solitude_end_lonely_voyage
 
 # どのルートにも当てはまらない場合（エラーまたは未定義ルート）
