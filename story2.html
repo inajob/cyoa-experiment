@@ -383,6 +383,8 @@ a {
 # ラベルID: l_build_raft_alone_choice
 # ラベル名: 単独イカダ建造選択
 
+%eqif v_trust_akira, true, l_build_raft_alone_after_akira_path
+
 現実主義のアキラも、夢見がちなサヤカも、信用ならない。信じられるのは、自分の腕だけだ。
 俺は、誰にも告げず、一人だけの脱出計画を開始した。
 それは、想像を絶する苦行だった。巨大な流木を一人で動かし、夜通しロープを編む。
@@ -390,7 +392,20 @@ a {
 だが、俺は歯を食いしばり、作業を続けた。孤独が、俺の唯一の仲間だった。
 %set v_build_raft_alone, true, 一人でイカダ完成
 
-# 仮のジャンプ
+誰も信じない。誰も頼らない。その決意は、俺を孤独にしたが、同時に鋼の鎧ともなった。
+疲労と空腹が、常に思考を鈍らせようとする。だが、俺はたった一人で、この島に、そして運命に抗い続ける。
+すべては、自分の力で明日を掴むために。
+
+:次へ,l_act3_start
+
+*l_build_raft_alone_after_akira_path
+# ラベルID: l_build_raft_alone_after_akira_path
+# ラベル名: 単独イカダ建造選択（アキラ協力後）
+アキラと共にイカダを作ったはずなのに、なぜ俺は今、一人でイカダを作ろうとしている？
+自分の行動が理解できない。俺は、一体何をしたいんだ？
+アキラの顔が脳裏をよぎる。彼は俺をどう思うだろう？
+この矛盾した行動は、俺自身を深く混乱させた。
+%set v_half_hearted_abandon_akira, true, 中途半端な態度（アキラ放棄）
 :次へ,l_act2_end
 
 *l_act2_end
@@ -399,9 +414,18 @@ a {
 
 %eqif v_trust_akira, true, l_act2_end_akira_summary
 %eqif v_trust_sayaka, true, l_act2_end_sayaka_summary
+%eqif v_half_hearted_abandon_akira, true, l_act2_end_half_hearted_abandon_akira_summary
 %eqif v_half_hearted_choice, true, l_act2_end_half_hearted_summary
 %eqif v_build_raft_alone, true, l_act2_end_solitude_summary
 :次へ,l_act2_end_default_summary
+
+*l_act2_end_half_hearted_abandon_akira_summary
+# ラベルID: l_act2_end_half_hearted_abandon_akira_summary
+# ラベル名: 第二幕終了：中途半端要約（アキラ放棄）
+アキラとの約束を破り、一人で道を模索しようとした俺の心は、深い迷路に迷い込んだ。
+脱出への具体的な手段も、島の謎の核心に迫る手がかりも、まだ不明瞭なままだ。
+俺は、自分自身の矛盾に囚われていた。
+:次へ,l_act3_start
 
 *l_act2_end_akira_summary
 # ラベルID: l_act2_end_akira_summary
@@ -520,7 +544,7 @@ a {
 ここで足止めを食らうのは、別のリスクを意味していた。
 
 :この障害を乗り越え、現実的な脱出を強行する,l_overcome_trial_choice
-:嵐が過ぎるのを待つ間に、島の謎に関する手がかりを追う,l_pursue_ambiguous_clue
+:嵐が過ぎるのを待つ間に、島の謎に関する手がかりを追う,l_pursue_ambiguous_clue_router
 
 *l_akira_path_storm_radio_choice
 # ラベルID: l_akira_path_storm_radio_choice
@@ -535,16 +559,62 @@ a {
 このままでは、海に出た瞬間に分解してしまうだろう。
 %set v_obstacle_loose_rope, true, 障害：ロープ緩み
 :この障害を乗り越え、現実的な脱出を強行する,l_overcome_trial_choice
-:このイカダは諦め、島の謎に関する手がかりを追う,l_pursue_ambiguous_clue
+:このイカダは諦め、島の謎に関する手がかりを追う,l_pursue_ambiguous_clue_router
 
-*l_pursue_ambiguous_clue
-# ラベルID: l_pursue_ambiguous_clue
-# ラベル名: 曖昧な手がかりを追う
+*l_pursue_ambiguous_clue_router
+# ラベルID: l_pursue_ambiguous_clue_router
+# ラベル名: 曖昧な手がかりを追う（ルーター）
+%eqif v_trust_sayaka, true, l_pursue_ambiguous_clue_with_sayaka_knowledge
+:次へ,l_pursue_ambiguous_clue_without_sayaka_knowledge
 
-アキラとの現実的な脱出を諦め、島の謎に関する曖昧な手がかりを追うことにした。
-しかし、サヤカの専門知識なしでは、その謎を解き明かすことは困難だった。
+*l_pursue_ambiguous_clue_with_sayaka_knowledge
+# ラベルID: l_pursue_ambiguous_clue_with_sayaka_knowledge
+# ラベル名: 曖昧な手がかりを追う（サヤカ知識あり）
+アキラの顔を見た。彼の目には、失望と、そしてわずかな怒りが浮かんでいた。
+「…そうか。お前も、そっちへ行くのか」
+彼はそれ以上何も言わず、ただ静かに、俺から視線を外した。
+俺は、彼に背を向けた。この選択が、俺たちの間に築き上げた絆を、一瞬で切り裂いたことを知っていた。
+だが、サヤカの言葉が、あの遺跡の謎が、俺の心を捉えて離さなかった。
+:次へ,l_reunite_with_sayaka_router
+
+*l_pursue_ambiguous_clue_without_sayaka_knowledge
+# ラベルID: l_pursue_ambiguous_clue_without_sayaka_knowledge
+# ラベル名: 曖昧な手がかりを追う（サヤカ知識なし）
+アキラの顔を見た。彼の目には、理解できないものを見るような困惑と、そして深い失望が浮かんでいた。
+「…何を言っているんだ？今さら、そんなものに構っている暇はないだろう！」
+彼の声は、俺の耳には届かなかった。
+俺は、彼に背を向けた。この選択が、俺たちの間に築き上げた絆を、一瞬で切り裂いたことを知っていた。
+だが、あの遺跡の、あの紋様の、あの異様な気配が、俺の心を捉えて離さなかった。
+:次へ,l_reunite_with_sayaka_router
+
+*l_reunite_with_sayaka_router
+# ラベルID: l_reunite_with_sayaka_router
+# ラベル名: サヤカと再会（ルーター）
+%eqif v_trust_sayaka, true, l_reunite_with_sayaka_trusted
+:次へ,l_reunite_with_sayaka_untrusted
+
+*l_reunite_with_sayaka_trusted
+# ラベルID: l_reunite_with_sayaka_trusted
+# ラベル名: サヤカと再会（信頼あり）
+遺跡の奥深く、サヤカは変わらず紋様を調べていた。
+俺の姿を見ると、彼女は驚きと、そして安堵の表情を浮かべた。
+「あなた！やっぱり戻ってきてくれたのね！アキラは…いいえ、今はいいわ。この謎を解くには、あなたの力が必要よ！」
+彼女は俺の選択を咎めることなく、ただ、探求の炎を再び燃やそうとしていた。
 # もし既に解けていれば知識エンドへ
 %eqif v_solve_ruins_puzzle, true, l_knowledge_end_island_inheritor
+# 謎が解けていなければ永遠の探求者エンドへ
+:次へ,l_lost_end_eternal_seeker
+
+*l_reunite_with_sayaka_untrusted
+# ラベルID: l_reunite_with_sayaka_untrusted
+# ラベル名: サヤカと再会（信頼なし）
+遺跡の奥深く、サヤカは変わらず紋様を調べていた。
+俺の姿を見ると、彼女は警戒するようにこちらを見た。
+「…あなた。なぜここに？アキラのところへ行ったはずでは？」
+俺は、アキラを捨ててここへ来たことを、正直に話した。
+彼女は眉をひそめ、俺をじっと見つめた。
+「…そう。あなたは、自分の都合で人を裏切るのね。でも、この謎は、そんな生半可な気持ちで解けるものじゃないわ」
+彼女の言葉は、冷たく、そして正しかった。
 # 謎が解けていなければ永遠の探求者エンドへ
 :次へ,l_lost_end_eternal_seeker
 
